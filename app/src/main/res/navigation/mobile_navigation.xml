@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_ujian">
+
+    <fragment
+        android:id="@+id/nav_ujian"
+        android:name="org.aplas.myapplication.ui.ui.ujian.UjianFragment"
+        android:label="@string/menu_ujian"
+        tools:layout="@layout/fragment_ujian">
+
+        <action
+            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
+            app:destination="@id/nav_home_second" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_home_second"
+        android:name="org.aplas.myapplication.ui.ui.peringkat.PeringkatFragment"
+        android:label="@string/home_second"
+        tools:layout="@layout/fragment_peringkat">
+        <action
+            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
+            app:destination="@id/nav_ujian" />
+
+        <argument
+            android:name="myArg"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_bank_soal"
+        android:name="org.aplas.myapplication.ui.ui.banksoal.BankSoalFragment"
+        android:label="@string/menu_bank_soal"
+        tools:layout="@layout/fragment_bank_soal" />
+
+    <fragment
+        android:id="@+id/nav_peringkat"
+        android:name="org.aplas.myapplication.ui.ui.peringkat.PeringkatFragment"
+        android:label="@string/menu_peringkat"
+        tools:layout="@layout/fragment_peringkat" />
+
+    <fragment
+        android:id="@+id/nav_materi"
+        android:name="org.aplas.myapplication.ui.ui.materi.MateriFragment"
+        android:label="@string/menu_materi"
+        tools:layout="@layout/fragment_materi"/>
+</navigation>
