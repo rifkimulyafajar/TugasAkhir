@@ -19,6 +19,7 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="8dp"
             android:hint="guru"
+            android:textColor="#000"
             android:textSize="16sp" />
 
         <TextView
@@ -28,6 +29,7 @@
             android:layout_below="@id/tvGuru"
             android:layout_marginTop="8dp"
             android:hint="mapel"
+            android:textColor="#000"
             android:textSize="16sp" />
 
         <TextView
@@ -38,6 +40,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="8dp"
             android:hint="kelas"
+            android:textColor="#000"
             android:textSize="16sp"/>
 
         <TextView
@@ -48,6 +51,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="8dp"
             android:hint="jurusan"
+            android:textColor="#000"
             android:textSize="16sp" />
 
         <Button
@@ -86,7 +90,7 @@
     </RelativeLayout>
 
     <View
-        android:background="#000"
+        android:background="#A2BCE8"
         android:layout_width="match_parent"
         android:layout_height="20dp"/>
 </LinearLayout>

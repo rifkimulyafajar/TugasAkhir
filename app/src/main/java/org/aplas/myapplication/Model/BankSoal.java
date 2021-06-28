@@ -1,19 +1,18 @@
 package org.aplas.myapplication.Model;
 
-public class Materi
-{
-    private DataMateri[] data;
+public class BankSoal {
+    private DataBankSoal[] data;
 
     private String message;
 
     private String status;
 
-    public DataMateri[] getData ()
+    public DataBankSoal[] getData ()
     {
         return data;
     }
 
-    public void setData (DataMateri[] data)
+    public void setData (DataBankSoal[] data)
     {
         this.data = data;
     }

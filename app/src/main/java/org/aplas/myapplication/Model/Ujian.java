@@ -1,19 +1,18 @@
 package org.aplas.myapplication.Model;
 
-public class Materi
-{
-    private DataMateri[] data;
+public class Ujian {
+    private DataUjian[] data;
 
     private String message;
 
     private String status;
 
-    public DataMateri[] getData ()
+    public DataUjian[] getData ()
     {
         return data;
     }
 
-    public void setData (DataMateri[] data)
+    public void setData (DataUjian[] data)
     {
         this.data = data;
     }

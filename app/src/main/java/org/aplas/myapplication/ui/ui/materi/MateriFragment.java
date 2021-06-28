@@ -1,5 +1,6 @@
 package org.aplas.myapplication.ui.ui.materi;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import org.aplas.myapplication.Adapter.AdapterMateri;
 import org.aplas.myapplication.Model.ApiInterface;
@@ -17,15 +19,24 @@ import org.aplas.myapplication.Model.Materi;
 import org.aplas.myapplication.R;
 import org.aplas.myapplication.Rest.ApiClient;
 
+import java.net.IDN;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class MateriFragment extends Fragment {
 
     ApiInterface apiInterface;
     private RecyclerView recyclerView;
     private AdapterMateri adapter;
+
+    SharedPreferences sharedPreferences;
+    private static final String SHARE = "KEY_SHARE";
+    private static final String ID_KLS = "KEY_ID_KLS";
+    private static final String ID_JRS = "KEY_ID_JRS";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,17 +53,29 @@ public class MateriFragment extends Fragment {
     }
 
     private void refresh() {
-        Call<Materi> materiCall = apiInterface.getMateri();
+        sharedPreferences = getActivity().getSharedPreferences(SHARE, MODE_PRIVATE);
+        String kls = sharedPreferences.getString(ID_KLS, "");
+        String jrs = sharedPreferences.getString(ID_JRS, "");
+
+        Call<Materi> materiCall = apiInterface.getMateri(kls, jrs);
         materiCall.enqueue(new Callback<Materi>() {
             @Override
             public void onResponse(Call<Materi> call, Response<Materi> response) {
                 Materi materi = response.body();
 
                 if (response.isSuccessful()) {
-                    for (int i = 0; i<materi.getData().length; i++) {
-                        adapter = new AdapterMateri(materi, getContext());
-                        recyclerView.setAdapter(adapter);
+
+                    if (materi != null) {
+                        for (int i = 0; i<materi.getData().length; i++) {
+                            adapter = new AdapterMateri(materi, getContext());
+                            recyclerView.setAdapter(adapter);
+                        }
+                        Toast.makeText(getActivity(), "Berhasil Load Data Materi", Toast.LENGTH_LONG).show();
                     }
+                    else {
+                        Toast.makeText(getActivity(), "Tidak Ada Materi Untuk Saat Ini", Toast.LENGTH_LONG).show();
+                    }
+
                 }
 
             }

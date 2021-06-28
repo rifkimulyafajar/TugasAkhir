@@ -1,6 +1,6 @@
 package org.aplas.myapplication.Model;
 
-public class Data {
+public class DataMateri {
     private String id_materi;
 
     private String level;
