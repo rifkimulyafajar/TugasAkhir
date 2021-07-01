@@ -20,8 +20,7 @@ public interface ApiInterface {
     @FormUrlEncoded
     @PUT("Api/Siswa/siswa/{id_siswa}")
     Call<UpdateResponse> profile(@Path("id_siswa") String id_siswa,
-                                    @Field("nis") String nis, @Field("nama") String nama,
-                                    @Field("username") String username, @Field("password") String password);
+                                 @Field("username") String username, @Field("password") String password);
 
 
     @GET("Api/Siswa/materi")
@@ -37,5 +36,9 @@ public interface ApiInterface {
     @GET("Api/Siswa/ujian")
     Call<Ujian> getUjian(@Query("id_kelas") String id_kelas,
                            @Query("id_jurusan") String id_jurusan);
+
+
+    @GET("Api/Siswa/soalujian")
+    Call<SoalUjian> getSoalUjian(@Query("id_ujian") String id_ujian);
 
 }

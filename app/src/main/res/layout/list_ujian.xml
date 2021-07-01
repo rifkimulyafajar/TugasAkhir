@@ -106,19 +106,30 @@
         app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
-    <TextView
-        android:id="@+id/tv_click"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btn_kerjakan"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="-- Click me...!! --"
-        android:textSize="18sp"
-        android:textStyle="bold|italic"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="Kerjakan"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/divider2"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintEnd_toEndOf="@+id/tv_durasi"
+        app:layout_constraintStart_toStartOf="@+id/tv_durasi"
         app:layout_constraintTop_toBottomOf="@+id/tv_durasi" />
+
+    <EditText
+        android:id="@+id/edtTxt_token"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Masukkan token"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/tv_mulai"
+        app:layout_constraintStart_toStartOf="@+id/tv_mulai"
+        app:layout_constraintTop_toBottomOf="@+id/tv_mulai" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
