@@ -18,7 +18,7 @@ public interface ApiInterface {
 
 
     @FormUrlEncoded
-    @PUT("Api/Siswa/siswa/{id_siswa}")
+    @POST("Api/Siswa/siswa/{id_siswa}")
     Call<UpdateResponse> profile(@Path("id_siswa") String id_siswa,
                                  @Field("username") String username, @Field("password") String password);
 

@@ -6,17 +6,13 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp">
 
-    <TextView
-        android:id="@+id/TV_soal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:text="soal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <WebView
+        android:id="@+id/WV_soal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+
 
     <RadioGroup
         android:layout_width="0dp"
@@ -24,9 +20,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/TV_soal"
-        app:layout_constraintStart_toStartOf="@+id/TV_soal"
-        app:layout_constraintTop_toBottomOf="@+id/TV_soal">
+        app:layout_constraintEnd_toEndOf="@+id/WV_soal"
+        app:layout_constraintStart_toStartOf="@+id/WV_soal"
+        app:layout_constraintTop_toBottomOf="@+id/WV_soal">
 
         <RadioButton
             android:id="@+id/pil_a"

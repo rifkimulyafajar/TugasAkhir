@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,7 +33,7 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.soal.setText(soal.getData()[position].getSoal());
+        holder.wvsoal.loadData(soal.getData()[position].getSoal(), "text/html", "UTF-8");
         holder.a.setText(soal.getData()[position].getPilihan_a());
         holder.b.setText(soal.getData()[position].getPilihan_b());
         holder.c.setText(soal.getData()[position].getPilihan_c());
@@ -47,12 +48,14 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView soal, a,b,c,d,e ,jenis;
+        TextView soal, a,b,c,d,e ;
+        WebView wvsoal;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            soal = itemView.findViewById(R.id.TV_soal);
+            wvsoal = itemView.findViewById(R.id.WV_soal);
             a = itemView.findViewById(R.id.pil_a);
             b = itemView.findViewById(R.id.pil_b);
             c = itemView.findViewById(R.id.pil_c);

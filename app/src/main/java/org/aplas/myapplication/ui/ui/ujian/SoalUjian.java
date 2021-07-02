@@ -35,7 +35,6 @@ public class SoalUjian extends AppCompatActivity {
 
         guru = findViewById(R.id.TVguru); mapel = findViewById(R.id.TVmapel);
         kelas = findViewById(R.id.TVkelas); jurusan = findViewById(R.id.TVjurusan);
-        jenis = findViewById(R.id.textView14);
 
         Bundle bundle = getIntent().getExtras();
         String bguru = bundle.getString("keyguru"); String bmapel = bundle.getString("keymapel");

@@ -18,6 +18,11 @@ import org.aplas.myapplication.Model.Ujian;
 import org.aplas.myapplication.R;
 import org.aplas.myapplication.ui.ui.ujian.SoalUjian;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.TimeZone;
+
 public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> {
 
     Ujian ujian;
@@ -69,6 +74,7 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
                     i.putExtra("keyguru", sguru); i.putExtra("keymapel", smapel);
                     i.putExtra("keykelas", skelas); i.putExtra("keyjurusan", sjurusan);
                     context.startActivity(i);
+
                 }
                 else {
                     Toast.makeText(context, "Token Salah !!", Toast.LENGTH_LONG).show();
