@@ -26,7 +26,7 @@ public class SoalUjian extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AdapterSoalUjian adapter;
 
-    TextView guru, mapel, kelas, jurusan ,jenis;
+    TextView guru, mapel, kelas, jurusan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,6 @@ public class SoalUjian extends AppCompatActivity {
         String bkelas = bundle.getString("keykelas"); String bjurus = bundle.getString("keyjurusan");
 
         guru.setText(bguru); mapel.setText(bmapel); kelas.setText(bkelas); jurusan.setText(bjurus);
-
 
         recyclerView = findViewById(R.id.rv_soalujian);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SoalUjian.this);

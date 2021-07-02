@@ -62,20 +62,29 @@ public class ProfileActivity extends AppCompatActivity {
             kelas.setText(""+skelas);
             jurusan.setText(""+sjurusan);
             user.setText(""+suser);
-            pass.setText(""+spass);
         }
 
     }
 
     public void update(View view) {
+
+        String password;
+
         sharedPreferences = getSharedPreferences(SHARE, MODE_PRIVATE);
         String sid = sharedPreferences.getString(ID, "");
+        String spass = sharedPreferences.getString(PASSWORD, "");
 
         String etuser = user.getText().toString();
         String etpass = pass.getText().toString();
 
+        if (etpass.equals(null)) {
+            password = spass;
+        } else {
+            password = etpass;
+        }
+
         ApiInterface apiInterface = ApiClient.getService();
-        Call<UpdateResponse> call = apiInterface.profile(sid, etuser, etpass);
+        Call<UpdateResponse> call = apiInterface.profile(sid, etuser, password);
         call.enqueue(new Callback<UpdateResponse>() {
             @Override
             public void onResponse(Call<UpdateResponse> call, Response<UpdateResponse> response) {

@@ -13,6 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.aplas.myapplication.Model.SoalUjian;
 import org.aplas.myapplication.R;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.ViewHolder> {
 
     SoalUjian soal;
@@ -39,7 +43,6 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
         holder.c.setText(soal.getData()[position].getPilihan_c());
         holder.d.setText(soal.getData()[position].getPilihan_d());
         holder.e.setText(soal.getData()[position].getPilihan_e());
-
     }
 
     @Override
@@ -48,7 +51,7 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView soal, a,b,c,d,e ;
+        TextView soal, a,b,c,d,e;
         WebView wvsoal;
 
 
@@ -61,7 +64,6 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
             c = itemView.findViewById(R.id.pil_c);
             d = itemView.findViewById(R.id.pil_d);
             e = itemView.findViewById(R.id.pil_e);
-
         }
     }
 }

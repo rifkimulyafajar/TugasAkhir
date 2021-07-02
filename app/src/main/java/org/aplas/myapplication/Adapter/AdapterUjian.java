@@ -95,7 +95,7 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView guru, mapel, kelas, jurusan, mulai, durasi, jenis;
+        TextView guru, mapel, kelas, jurusan, mulai, durasi;
         EditText et_token;
         Button token;
         public ViewHolder(@NonNull View itemView) {
