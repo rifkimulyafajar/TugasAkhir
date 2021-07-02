@@ -81,6 +81,11 @@ public class ProfileActivity extends AppCompatActivity {
             public void onResponse(Call<UpdateResponse> call, Response<UpdateResponse> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(ProfileActivity.this, "" +response.body().getMessage(), Toast.LENGTH_LONG).show();
+                    sharedPreferences = getSharedPreferences(SHARE, MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(USERNAME, etuser);
+                    editor.putString(PASSWORD, etpass);
+                    editor.apply();
                     Intent i = new Intent(ProfileActivity.this, MainActivity.class);
                     startActivity(i);
 
