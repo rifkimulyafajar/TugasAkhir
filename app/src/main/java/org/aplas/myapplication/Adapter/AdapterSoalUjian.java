@@ -1,17 +1,28 @@
 package org.aplas.myapplication.Adapter;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.aplas.myapplication.Model.SoalUjian;
 import org.aplas.myapplication.R;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.ViewHolder> {
 
@@ -40,6 +51,12 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
         holder.d.setText(soal.getData()[position].getPilihan_d());
         holder.e.setText(soal.getData()[position].getPilihan_e());
 
+//        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        String date = df.format(Calendar.getInstance().getTime());
+//        holder.durasi.setText(date);
+//        Toast.makeText(context,date,Toast.LENGTH_SHORT).show();
+
+
     }
 
     @Override
@@ -48,8 +65,9 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView soal, a,b,c,d,e ;
+        TextView durasi, a,b,c,d,e ;
         WebView wvsoal;
+
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -61,6 +79,9 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
             c = itemView.findViewById(R.id.pil_c);
             d = itemView.findViewById(R.id.pil_d);
             e = itemView.findViewById(R.id.pil_e);
+            durasi = itemView.findViewById(R.id.textView14);
+
+
 
         }
     }

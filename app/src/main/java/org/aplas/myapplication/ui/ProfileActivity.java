@@ -56,13 +56,16 @@ public class ProfileActivity extends AppCompatActivity {
         String suser = sharedPreferences.getString(USERNAME, "");
         String spass = sharedPreferences.getString(PASSWORD, "");
 
-        if (snama != null && snis != null && skelas != null && sjurusan != null && suser != null && spass != null) {
+        if (snama != null && snis != null && skelas != null && sjurusan != null && suser != null ) {
             nis.setText(""+snis);
             nama.setText(""+snama);
             kelas.setText(""+skelas);
             jurusan.setText(""+sjurusan);
             user.setText(""+suser);
-            pass.setText(""+spass);
+//            pass.setText(""+spass);
+        }
+        if(pass.getText()!=null){
+            pass.setText(null);
         }
 
     }

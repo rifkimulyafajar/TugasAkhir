@@ -14,6 +14,12 @@ import org.aplas.myapplication.Model.ApiInterface;
 import org.aplas.myapplication.R;
 import org.aplas.myapplication.Rest.ApiClient;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,6 +45,24 @@ public class SoalUjian extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String bguru = bundle.getString("keyguru"); String bmapel = bundle.getString("keymapel");
         String bkelas = bundle.getString("keykelas"); String bjurus = bundle.getString("keyjurusan");
+        String waktmulai = bundle.getString("waktumulai");
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            Date tmp = df.parse(waktmulai);
+
+            String date = df.format(Calendar.getInstance().getTime());
+            int kurang = tmp.compareTo(Calendar.getInstance().getTime());
+//            Toast.makeText(SoalUjian.this,Integer.toString(kurang),Toast.LENGTH_LONG).show();
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+//        Toast.makeText(SoalUjian.this,date,Toast.LENGTH_LONG).show();
+
+        TextView tv14 =findViewById(R.id.textView14);
+//        tv14.setText(date);
+
 
         guru.setText(bguru); mapel.setText(bmapel); kelas.setText(bkelas); jurusan.setText(bjurus);
 
@@ -50,6 +74,7 @@ public class SoalUjian extends AppCompatActivity {
 
         refresh();
     }
+
 
     private void refresh() {
         Bundle bundle = getIntent().getExtras();
