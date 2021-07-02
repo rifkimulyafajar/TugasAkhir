@@ -78,9 +78,13 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
+            Date date1 = df.parse(ujian.getData()[position].getWaktu_mulai());
             Date date2 = df.parse(ujian.getData()[position].getWaktu_selesai());
-            int kurang = date2.compareTo(Calendar.getInstance().getTime());
-            if (kurang<0){
+            int cekawal = date1.compareTo(Calendar.getInstance().getTime());
+            int cekakhir = date2.compareTo(Calendar.getInstance().getTime());
+            if (cekawal>0){
+                holder.token.setVisibility(View.INVISIBLE);
+            }else if(cekakhir<0){
                 holder.token.setVisibility(View.INVISIBLE);
             }
 
