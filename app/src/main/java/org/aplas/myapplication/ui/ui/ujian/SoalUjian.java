@@ -26,7 +26,7 @@ public class SoalUjian extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AdapterSoalUjian adapter;
 
-    TextView guru, mapel, kelas, jurusan;
+    TextView guru, mapel, kelas, jurusan ,jenis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +35,14 @@ public class SoalUjian extends AppCompatActivity {
 
         guru = findViewById(R.id.TVguru); mapel = findViewById(R.id.TVmapel);
         kelas = findViewById(R.id.TVkelas); jurusan = findViewById(R.id.TVjurusan);
+        jenis = findViewById(R.id.textView14);
 
         Bundle bundle = getIntent().getExtras();
         String bguru = bundle.getString("keyguru"); String bmapel = bundle.getString("keymapel");
         String bkelas = bundle.getString("keykelas"); String bjurus = bundle.getString("keyjurusan");
 
         guru.setText(bguru); mapel.setText(bmapel); kelas.setText(bkelas); jurusan.setText(bjurus);
+
 
         recyclerView = findViewById(R.id.rv_soalujian);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SoalUjian.this);
@@ -53,8 +55,9 @@ public class SoalUjian extends AppCompatActivity {
     private void refresh() {
         Bundle bundle = getIntent().getExtras();
         String id = bundle.getString("id");
+        String jns = bundle.getString("jenis");
 
-        Call<org.aplas.myapplication.Model.SoalUjian> call = apiInterface.getSoalUjian(id);
+        Call<org.aplas.myapplication.Model.SoalUjian> call = apiInterface.getSoalUjian(id, jns);
         call.enqueue(new Callback<org.aplas.myapplication.Model.SoalUjian>() {
             @Override
             public void onResponse(Call<org.aplas.myapplication.Model.SoalUjian> call, Response<org.aplas.myapplication.Model.SoalUjian> response) {

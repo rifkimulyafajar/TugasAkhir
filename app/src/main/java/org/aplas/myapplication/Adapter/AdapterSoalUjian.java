@@ -38,6 +38,7 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
         holder.c.setText(soal.getData()[position].getPilihan_c());
         holder.d.setText(soal.getData()[position].getPilihan_d());
         holder.e.setText(soal.getData()[position].getPilihan_e());
+
     }
 
     @Override
@@ -46,7 +47,7 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView soal, a,b,c,d,e;
+        TextView soal, a,b,c,d,e ,jenis;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -57,6 +58,7 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
             c = itemView.findViewById(R.id.pil_c);
             d = itemView.findViewById(R.id.pil_d);
             e = itemView.findViewById(R.id.pil_e);
+
         }
     }
 }

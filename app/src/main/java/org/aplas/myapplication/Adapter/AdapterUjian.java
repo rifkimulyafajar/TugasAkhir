@@ -54,6 +54,7 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
         holder.durasi.setText("Durasi : " +ujian.getData()[position].getDurasi()+ " menit");
 
         String id_ujian = ujian.getData()[position].getId_ujian();
+        String jenis = ujian.getData()[position].getJenis();
         String token = ujian.getData()[position].getToken();
 
         holder.token.setOnClickListener(view -> {
@@ -64,7 +65,7 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
                 if (holder.et_token.getText().toString().equals(token)) {
                     Toast.makeText(context, "Token Benar, Selamat Mengerjakan !!", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(context, SoalUjian.class);
-                    i.putExtra("id", id_ujian);
+                    i.putExtra("id", id_ujian); i.putExtra("jenis", jenis);
                     i.putExtra("keyguru", sguru); i.putExtra("keymapel", smapel);
                     i.putExtra("keykelas", skelas); i.putExtra("keyjurusan", sjurusan);
                     context.startActivity(i);
@@ -88,7 +89,7 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView guru, mapel, kelas, jurusan, mulai, durasi;
+        TextView guru, mapel, kelas, jurusan, mulai, durasi, jenis;
         EditText et_token;
         Button token;
         public ViewHolder(@NonNull View itemView) {

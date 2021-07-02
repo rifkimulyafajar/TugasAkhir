@@ -39,6 +39,7 @@ public interface ApiInterface {
 
 
     @GET("Api/Siswa/soalujian")
-    Call<SoalUjian> getSoalUjian(@Query("id_ujian") String id_ujian);
+    Call<SoalUjian> getSoalUjian(@Query("id_ujian") String id_ujian,
+                                 @Query("jenis") String jenis);
 
 }
