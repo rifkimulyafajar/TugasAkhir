@@ -62,7 +62,6 @@ public class ProfileActivity extends AppCompatActivity {
             kelas.setText(""+skelas);
             jurusan.setText(""+sjurusan);
             user.setText(""+suser);
-//            pass.setText(""+spass);
         }
         if(pass.getText()!=null){
             pass.setText(null);
@@ -71,19 +70,34 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void update(View view) {
+
+        String password;
+
         sharedPreferences = getSharedPreferences(SHARE, MODE_PRIVATE);
         String sid = sharedPreferences.getString(ID, "");
+        String spass = sharedPreferences.getString(PASSWORD, "");
 
         String etuser = user.getText().toString();
         String etpass = pass.getText().toString();
 
+        if (etpass.equals(null)) {
+            password = spass;
+        } else {
+            password = etpass;
+        }
+
         ApiInterface apiInterface = ApiClient.getService();
-        Call<UpdateResponse> call = apiInterface.profile(sid, etuser, etpass);
+        Call<UpdateResponse> call = apiInterface.profile(sid, etuser, password);
         call.enqueue(new Callback<UpdateResponse>() {
             @Override
             public void onResponse(Call<UpdateResponse> call, Response<UpdateResponse> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(ProfileActivity.this, "" +response.body().getMessage(), Toast.LENGTH_LONG).show();
+                    sharedPreferences = getSharedPreferences(SHARE, MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(USERNAME, etuser);
+                    editor.putString(PASSWORD, etpass);
+                    editor.apply();
                     Intent i = new Intent(ProfileActivity.this, MainActivity.class);
                     startActivity(i);
 

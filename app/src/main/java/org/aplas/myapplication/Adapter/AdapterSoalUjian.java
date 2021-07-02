@@ -23,6 +23,7 @@ import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
+import java.util.Calendar;
 
 public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.ViewHolder> {
 
@@ -50,13 +51,6 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
         holder.c.setText(soal.getData()[position].getPilihan_c());
         holder.d.setText(soal.getData()[position].getPilihan_d());
         holder.e.setText(soal.getData()[position].getPilihan_e());
-
-//        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        String date = df.format(Calendar.getInstance().getTime());
-//        holder.durasi.setText(date);
-//        Toast.makeText(context,date,Toast.LENGTH_SHORT).show();
-
-
     }
 
     @Override
@@ -65,7 +59,9 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
         TextView durasi, a,b,c,d,e ;
+
         WebView wvsoal;
 
 
@@ -80,9 +76,6 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
             d = itemView.findViewById(R.id.pil_d);
             e = itemView.findViewById(R.id.pil_e);
             durasi = itemView.findViewById(R.id.textView14);
-
-
-
         }
     }
 }

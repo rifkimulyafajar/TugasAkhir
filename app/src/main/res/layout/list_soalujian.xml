@@ -4,25 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    android:background="#fff">
 
     <WebView
-        android:id="@+id/WV_soal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
-
-
+        android:id="@+id/wv_soal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="#fff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="WebViewLayout" />
 
     <RadioGroup
+        android:id="@+id/radioGroup2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/WV_soal"
-        app:layout_constraintStart_toStartOf="@+id/WV_soal"
-        app:layout_constraintTop_toBottomOf="@+id/WV_soal">
+        android:background="#fff"
+        app:layout_constraintEnd_toEndOf="@+id/wv_soal"
+        app:layout_constraintStart_toStartOf="@+id/wv_soal"
+        app:layout_constraintTop_toBottomOf="@+id/wv_soal">
 
         <RadioButton
             android:id="@+id/pil_a"
@@ -54,4 +60,16 @@
             android:layout_height="wrap_content"
             android:text="E" />
     </RadioGroup>
+
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
