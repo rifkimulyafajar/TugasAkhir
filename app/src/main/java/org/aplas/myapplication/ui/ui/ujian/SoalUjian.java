@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +16,11 @@ import org.aplas.myapplication.Model.ApiInterface;
 import org.aplas.myapplication.R;
 import org.aplas.myapplication.Rest.ApiClient;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
@@ -39,8 +46,22 @@ public class SoalUjian extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String bguru = bundle.getString("keyguru"); String bmapel = bundle.getString("keymapel");
         String bkelas = bundle.getString("keykelas"); String bjurus = bundle.getString("keyjurusan");
-        String bdurasi = bundle.getString("keydurasi");
+        String bdurasi = bundle.getString("keydurasi"); String bakhir = bundle.getString("keyakhir");
 
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            Date date = df.parse(bakhir);
+            int cek = date.compareTo(Calendar.getInstance().getTime());
+            if (cek == 0 || cek < 0) {
+                Intent i = new Intent(SoalUjian.this, UjianFragment.class);
+                startActivity(i);
+                finish();
+                Toast.makeText(SoalUjian.this, "Waktu Habis ..!!", Toast.LENGTH_LONG).show();
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         TextView durasi = findViewById(R.id.TVdurasi);
 
@@ -60,9 +81,11 @@ public class SoalUjian extends AppCompatActivity {
             }
 
             public void onFinish() {
-                Toast.makeText(SoalUjian.this, "Waktu Habis ..!!", Toast.LENGTH_LONG).show();
                 durasi.setText("done!");
+                Intent i = new Intent(SoalUjian.this, UjianFragment.class);
+                startActivity(i);
                 finish();
+                Toast.makeText(SoalUjian.this, "Waktu Habis ..!!", Toast.LENGTH_LONG).show();
             }
 
         }.start();
@@ -75,6 +98,7 @@ public class SoalUjian extends AppCompatActivity {
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
         refresh();
+
     }
 
 

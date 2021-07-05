@@ -71,6 +71,7 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
         String id_ujian = ujian.getData()[position].getId_ujian();
         String jenis = ujian.getData()[position].getJenis();
         String token = ujian.getData()[position].getToken();
+        String akhir = ujian.getData()[position].getWaktu_selesai();
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
@@ -105,7 +106,7 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
                     i.putExtra("id", id_ujian); i.putExtra("jenis", jenis);
                     i.putExtra("keyguru", sguru); i.putExtra("keymapel", smapel);
                     i.putExtra("keykelas", skelas); i.putExtra("keyjurusan", sjurusan);
-                    i.putExtra("keydurasi", sdurasi);
+                    i.putExtra("keydurasi", sdurasi); i.putExtra("keyakhir", akhir);
 
                     context.startActivity(i);
                 }
