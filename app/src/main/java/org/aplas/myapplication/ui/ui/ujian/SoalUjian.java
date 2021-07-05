@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,17 +14,11 @@ import org.aplas.myapplication.Model.ApiInterface;
 import org.aplas.myapplication.R;
 import org.aplas.myapplication.Rest.ApiClient;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static java.security.AccessController.getContext;
 
 public class SoalUjian extends AppCompatActivity {
 
@@ -45,24 +39,30 @@ public class SoalUjian extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String bguru = bundle.getString("keyguru"); String bmapel = bundle.getString("keymapel");
         String bkelas = bundle.getString("keykelas"); String bjurus = bundle.getString("keyjurusan");
-        String waktmulai = bundle.getString("waktumulai");
+        String bdurasi = bundle.getString("keydurasi");
 
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try {
-            Date tmp = df.parse(waktmulai);
 
-            String date = df.format(Calendar.getInstance().getTime());
-            int kurang = tmp.compareTo(Calendar.getInstance().getTime());
-//            Toast.makeText(SoalUjian.this,Integer.toString(kurang),Toast.LENGTH_LONG).show();
+        TextView durasi = findViewById(R.id.TVdurasi);
 
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-//        Toast.makeText(SoalUjian.this,date,Toast.LENGTH_LONG).show();
+        new CountDownTimer((Integer.parseInt(bdurasi) * 60000), 1000) {
 
-        TextView tv14 =findViewById(R.id.textView14);
-//        tv14.setText(date);
+            public void onTick(long millisUntilFinished) {
+                String waktu = String.format("%02d:%02d:%02d",
+                        TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
+                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) -
+                                TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
+                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
+                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
 
+                //Menampilkannya pada TexView
+                durasi.setText("Waktu " +waktu);
+            }
+
+            public void onFinish() {
+                durasi.setText("done!");
+            }
+
+        }.start();
 
         guru.setText(bguru); mapel.setText(bmapel); kelas.setText(bkelas); jurusan.setText(bjurus);
 

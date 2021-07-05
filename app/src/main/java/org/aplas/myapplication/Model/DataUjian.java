@@ -1,6 +1,8 @@
 package org.aplas.myapplication.Model;
 
 public class DataUjian {
+    private String judul_ujian;
+
     private String waktu_selesai;
 
     private String level;
@@ -36,6 +38,14 @@ public class DataUjian {
     private String waktu_mulai;
 
     private String username;
+
+    public String getJudul_ujian() {
+        return judul_ujian;
+    }
+
+    public void setJudul_ujian(String judul_ujian) {
+        this.judul_ujian = judul_ujian;
+    }
 
     public String getWaktu_selesai ()
     {

@@ -1,29 +1,17 @@
 package org.aplas.myapplication.Adapter;
 
 import android.content.Context;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.aplas.myapplication.Model.SoalUjian;
 import org.aplas.myapplication.R;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
-import java.util.Calendar;
 
 public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.ViewHolder> {
 
@@ -65,7 +53,6 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
         WebView wvsoal;
 
 
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -75,7 +62,7 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
             c = itemView.findViewById(R.id.pil_c);
             d = itemView.findViewById(R.id.pil_d);
             e = itemView.findViewById(R.id.pil_e);
-            durasi = itemView.findViewById(R.id.textView14);
+            durasi = itemView.findViewById(R.id.TVdurasi);
         }
     }
 }

@@ -22,7 +22,7 @@
         android:background="#000"
         app:layout_constraintEnd_toEndOf="@+id/tv_jurusan"
         app:layout_constraintStart_toStartOf="@+id/tv_kelas"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_judul" />
 
     <TextView
         android:id="@+id/tv_guru"
@@ -131,5 +131,16 @@
         app:layout_constraintEnd_toEndOf="@+id/tv_mulai"
         app:layout_constraintStart_toStartOf="@+id/tv_mulai"
         app:layout_constraintTop_toBottomOf="@+id/tv_mulai" />
+
+    <TextView
+        android:id="@+id/tv_judul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Judul"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
