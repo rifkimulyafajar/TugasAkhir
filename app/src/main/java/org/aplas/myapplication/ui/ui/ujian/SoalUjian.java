@@ -44,6 +44,7 @@ public class SoalUjian extends AppCompatActivity {
 
         TextView durasi = findViewById(R.id.TVdurasi);
 
+//        new CountDownTimer(6000, 1000) {
         new CountDownTimer((Integer.parseInt(bdurasi) * 60000), 1000) {
 
             public void onTick(long millisUntilFinished) {
@@ -59,7 +60,9 @@ public class SoalUjian extends AppCompatActivity {
             }
 
             public void onFinish() {
+                Toast.makeText(SoalUjian.this, "Waktu Habis ..!!", Toast.LENGTH_LONG).show();
                 durasi.setText("done!");
+                finish();
             }
 
         }.start();

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import org.aplas.myapplication.Adapter.AdapterMateri;
@@ -38,6 +39,8 @@ public class MateriFragment extends Fragment {
     private static final String ID_KLS = "KEY_ID_KLS";
     private static final String ID_JRS = "KEY_ID_JRS";
 
+    Button refresh;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -47,6 +50,9 @@ public class MateriFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+        refresh = view.findViewById(R.id.btn_rf);
+
         refresh();
 
         return view;
@@ -62,7 +68,6 @@ public class MateriFragment extends Fragment {
             @Override
             public void onResponse(Call<Materi> call, Response<Materi> response) {
                 Materi materi = response.body();
-
                 if (response.isSuccessful()) {
 
                     if (materi != null) {
@@ -70,19 +75,25 @@ public class MateriFragment extends Fragment {
                             adapter = new AdapterMateri(materi, getContext());
                             recyclerView.setAdapter(adapter);
                         }
-                        Toast.makeText(getActivity(), "Berhasil Load Data Materi", Toast.LENGTH_LONG).show();
+                        refresh.setVisibility(View.INVISIBLE);
                     }
-                    else {
-                        Toast.makeText(getActivity(), "Tidak Ada Materi Untuk Saat Ini", Toast.LENGTH_LONG).show();
-                    }
-
                 }
-
+                else {
+                    Toast.makeText(getActivity(), "Belum Ada Materi Untuk Saat Ini", Toast.LENGTH_LONG).show();
+                    refresh.setVisibility(View.VISIBLE);
+                    refresh.setOnClickListener(view -> {
+                        refresh();
+                    });
+                }
             }
 
             @Override
             public void onFailure(Call<Materi> call, Throwable t) {
-                Log.e("Retrofit Get", t.toString());
+                Toast.makeText(getActivity(), "" +t, Toast.LENGTH_LONG).show();
+                refresh.setVisibility(View.VISIBLE);
+                refresh.setOnClickListener(view -> {
+                    refresh();
+                });
             }
         });
     }
