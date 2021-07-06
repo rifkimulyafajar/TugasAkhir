@@ -37,6 +37,16 @@ public class DataUjian {
 
     private String username;
 
+    private String nilai;
+
+    public String getNilai() {
+        return nilai;
+    }
+
+    public void setNilai(String nilai) {
+        this.nilai = nilai;
+    }
+
     public String getWaktu_selesai ()
     {
         return waktu_selesai;
@@ -220,6 +230,10 @@ public class DataUjian {
     @Override
     public String toString()
     {
-        return "ClassPojo [waktu_selesai = "+waktu_selesai+", level = "+level+", jurusan = "+jurusan+", id_guru = "+id_guru+", id_mapel = "+id_mapel+", id_jurusan = "+id_jurusan+", mapel = "+mapel+", token = "+token+", password = "+password+", id_ujian = "+id_ujian+", nip = "+nip+", nama = "+nama+", kelas = "+kelas+", jenis = "+jenis+", id_kelas = "+id_kelas+", durasi = "+durasi+", waktu_mulai = "+waktu_mulai+", username = "+username+"]";
+        return "ClassPojo [waktu_selesai = "+waktu_selesai+", level = "+level+", jurusan = "+jurusan+
+                ", id_guru = "+id_guru+", id_mapel = "+id_mapel+", id_jurusan = "+id_jurusan+", mapel = "
+                +mapel+", token = "+token+", password = "+password+", id_ujian = "+id_ujian+", nip = "+nip
+                +", nama = "+nama+", kelas = "+kelas+", jenis = "+jenis+", id_kelas = "+id_kelas+", durasi = "
+                +durasi+", waktu_mulai = "+waktu_mulai+", username = "+username+"]";
     }
 }

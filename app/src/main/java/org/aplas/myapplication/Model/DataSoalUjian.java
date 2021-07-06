@@ -1,6 +1,6 @@
 package org.aplas.myapplication.Model;
 
-public class DataBankSoal {
+public class DataSoalUjian {
     private String pilihan_a;
 
     private String pilihan_c;
@@ -51,6 +51,8 @@ public class DataBankSoal {
 
     private String soal;
 
+    private String id_ujian;
+
     private String nama;
 
     private String tanggal;
@@ -61,6 +63,13 @@ public class DataBankSoal {
 
     private String nilai;
 
+    public String getId_ujian() {
+        return id_ujian;
+    }
+
+    public void setId_ujian(String id_ujian) {
+        this.id_ujian = id_ujian;
+    }
 
     public String getPilihan_a ()
     {

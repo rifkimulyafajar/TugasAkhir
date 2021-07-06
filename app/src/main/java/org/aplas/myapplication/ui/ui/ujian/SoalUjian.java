@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +17,7 @@ import org.aplas.myapplication.Adapter.AdapterSoalUjian;
 import org.aplas.myapplication.Model.ApiInterface;
 import org.aplas.myapplication.R;
 import org.aplas.myapplication.Rest.ApiClient;
+import org.aplas.myapplication.ui.MainActivity;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -29,18 +34,28 @@ import static java.security.AccessController.getContext;
 public class SoalUjian extends AppCompatActivity {
 
     ApiInterface apiInterface;
+    Context context = this;
+
+
     private RecyclerView recyclerView;
     private AdapterSoalUjian adapter;
 
     TextView guru, mapel, kelas, jurusan;
+    Button selesai;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_soal_ujian);
 
+//        Log.d("sharepref", "ID"+sharedPref.getString(IDSISWA));
+
+        int calculate;
+
         guru = findViewById(R.id.TVguru); mapel = findViewById(R.id.TVmapel);
         kelas = findViewById(R.id.TVkelas); jurusan = findViewById(R.id.TVjurusan);
+        selesai = findViewById(R.id.btnStopUjian);
 
         Bundle bundle = getIntent().getExtras();
         String bguru = bundle.getString("keyguru"); String bmapel = bundle.getString("keymapel");
@@ -48,12 +63,24 @@ public class SoalUjian extends AppCompatActivity {
         String waktmulai = bundle.getString("waktumulai");
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        selesai.setOnClickListener(view -> {
+            Toast.makeText(this, "Selesai", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, Integer.toString(adapter.getNilai()) , Toast.LENGTH_SHORT).show();
+
+//            Log.d("asdf", "Selesai  "+getIntent().toUri(0));
+            Log.d("asdf", "onCreate: "+Integer.toString(adapter.getNilai()));
+
+            Intent i = new Intent(context, MainActivity.class);
+            context.startActivity(i);
+        });
+
+
+        // countdown function
+
         try {
             Date tmp = df.parse(waktmulai);
 
-            String date = df.format(Calendar.getInstance().getTime());
-            int kurang = tmp.compareTo(Calendar.getInstance().getTime());
-//            Toast.makeText(SoalUjian.this,Integer.toString(kurang),Toast.LENGTH_LONG).show();
 
         } catch (ParseException e) {
             e.printStackTrace();
