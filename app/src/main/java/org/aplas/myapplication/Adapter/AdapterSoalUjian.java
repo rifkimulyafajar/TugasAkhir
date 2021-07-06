@@ -191,6 +191,7 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
             durasi = itemView.findViewById(R.id.textView14);
             rg = itemView.findViewById(R.id.radioGroup2);
 
+            durasi = itemView.findViewById(R.id.TVdurasi);
         }
     }
     public interface Onclickjawab{

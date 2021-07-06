@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -40,7 +41,7 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
     @Override
     public void onBindViewHolder(@NonNull AdapterBankSoal.ViewHolder holder, int position) {
         holder.mapel.setText(bank_soal.getData()[position].getMapel());
-        holder.soal.setText("Soal : " +bank_soal.getData()[position].getSoal());
+        holder.wvSoal.loadData("Soal : " +bank_soal.getData()[position].getSoal(), "text/html", "UTF-8");
         holder.a.setText(bank_soal.getData()[position].getPilihan_a());
         holder.b.setText(bank_soal.getData()[position].getPilihan_b());
         holder.c.setText(bank_soal.getData()[position].getPilihan_c());
@@ -116,7 +117,8 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView soal, mapel;
+        WebView wvSoal;
+        TextView mapel;
         Button jawab;
         RadioGroup jawaban;
         RadioButton a,b,c,d,e;
@@ -124,7 +126,7 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mapel = itemView.findViewById(R.id.txtMapel);
-            soal = itemView.findViewById(R.id.txtSoal);
+            wvSoal = itemView.findViewById(R.id.wvSoal);
             jawab = itemView.findViewById(R.id.btn_jawab);
             jawaban = itemView.findViewById(R.id.rg_jawaban);
             a = itemView.findViewById(R.id.rb_a);

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import org.aplas.myapplication.Adapter.AdapterBankSoal;
@@ -36,6 +37,8 @@ public class BankSoalFragment extends Fragment {
     private static final String ID_KLS = "KEY_ID_KLS";
     private static final String ID_JRS = "KEY_ID_JRS";
 
+    Button refresh;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,6 +48,9 @@ public class BankSoalFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+        refresh = view.findViewById(R.id.btn_rfsh);
+
         refresh();
 
         return view;
@@ -62,19 +68,30 @@ public class BankSoalFragment extends Fragment {
                 BankSoal soal = response.body();
 
                 if (response.isSuccessful()) {
-                    for (int i=0; i<soal.getData().length; i++) {
-                        adapter = new AdapterBankSoal(soal, getContext());
-                        recyclerView.setAdapter(adapter);
+                    if (soal != null) {
+                        for (int i=0; i<soal.getData().length; i++) {
+                            adapter = new AdapterBankSoal(soal, getContext());
+                            recyclerView.setAdapter(adapter);
+                        }
+                        refresh.setVisibility(View.INVISIBLE);
                     }
                 }
                 else {
-                    Toast.makeText(getContext(), "Gagal Load Data", Toast.LENGTH_LONG);
+                    Toast.makeText(getContext(), "Belum ada Soal Latihan untuk saat ini", Toast.LENGTH_LONG).show();
+                    refresh.setVisibility(View.VISIBLE);
+                    refresh.setOnClickListener(view -> {
+                        refresh();
+                    });
                 }
             }
 
             @Override
             public void onFailure(Call<BankSoal> call, Throwable t) {
-                Toast.makeText(getContext(), ""+t, Toast.LENGTH_LONG);
+                Toast.makeText(getActivity(), ""+t, Toast.LENGTH_LONG).show();
+                refresh.setVisibility(View.VISIBLE);
+                refresh.setOnClickListener(view -> {
+                    refresh();
+                });
             }
         });
     }

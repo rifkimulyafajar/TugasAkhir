@@ -10,6 +10,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+
+import android.os.CountDownTimer;
+import android.view.View;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,12 +28,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static java.security.AccessController.getContext;
 
 public class SoalUjian extends AppCompatActivity {
 
@@ -65,7 +68,8 @@ public class SoalUjian extends AppCompatActivity {
         String IdSiswa = sf.getString("KEY_ID","");
 
 
-
+        String bdurasi = bundle.getString("keydurasi"); String bakhir = bundle.getString("keyakhir");
+      
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         selesai.setOnClickListener(view -> {
@@ -94,15 +98,45 @@ public class SoalUjian extends AppCompatActivity {
         try {
             Date tmp = df.parse(waktmulai);
 
+            Date date = df.parse(bakhir);
+            int cek = date.compareTo(Calendar.getInstance().getTime());
+            if (cek == 0 || cek < 0) {
+                Intent i = new Intent(SoalUjian.this, UjianFragment.class);
+                startActivity(i);
+                finish();
+                Toast.makeText(SoalUjian.this, "Waktu Habis ..!!", Toast.LENGTH_LONG).show();
+            }
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
-//        Toast.makeText(SoalUjian.this,date,Toast.LENGTH_LONG).show();
 
-        TextView tv14 =findViewById(R.id.textView14);
-//        tv14.setText(date);
+        TextView durasi = findViewById(R.id.TVdurasi);
 
+//        new CountDownTimer(6000, 1000) {
+        new CountDownTimer((Integer.parseInt(bdurasi) * 60000), 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                String waktu = String.format("%02d:%02d:%02d",
+                        TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
+                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) -
+                                TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
+                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
+                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
+
+                //Menampilkannya pada TexView
+                durasi.setText("Waktu " +waktu);
+            }
+
+            public void onFinish() {
+                durasi.setText("done!");
+                Intent i = new Intent(SoalUjian.this, UjianFragment.class);
+                startActivity(i);
+                finish();
+                Toast.makeText(SoalUjian.this, "Waktu Habis ..!!", Toast.LENGTH_LONG).show();
+            }
+
+        }.start();
 
         guru.setText(bguru); mapel.setText(bmapel); kelas.setText(bkelas); jurusan.setText(bjurus);
 
@@ -112,6 +146,7 @@ public class SoalUjian extends AppCompatActivity {
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
         refresh();
+
     }
 
     private void sendData(String idUjian, String idSiswa, int jmlbenar, int nilai) {

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -34,6 +35,8 @@ public class UjianFragment extends Fragment {
     private static final String ID_KLS = "KEY_ID_KLS";
     private static final String ID_JRS = "KEY_ID_JRS";
 
+    Button refresh;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_ujian, container, false);
@@ -42,6 +45,9 @@ public class UjianFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+        refresh = view.findViewById(R.id.btn_refresh);
+
         refresh();
 
         return view;
@@ -63,13 +69,25 @@ public class UjianFragment extends Fragment {
                             adapter = new AdapterUjian(ujian, getContext());
                             recyclerView.setAdapter(adapter);
                         }
+                        refresh.setVisibility(View.INVISIBLE);
                     }
+                }
+                else {
+                    Toast.makeText(getContext(), "Belum Ada Ujian untuk saat ini", Toast.LENGTH_LONG).show();
+                    refresh.setVisibility(View.VISIBLE);
+                    refresh.setOnClickListener(view -> {
+                        refresh();
+                    });
                 }
             }
 
             @Override
             public void onFailure(Call<Ujian> call, Throwable t) {
                 Toast.makeText(getActivity(), "" +t, Toast.LENGTH_LONG).show();
+                refresh.setVisibility(View.VISIBLE);
+                refresh.setOnClickListener(view -> {
+                    refresh();
+                });
             }
         });
 

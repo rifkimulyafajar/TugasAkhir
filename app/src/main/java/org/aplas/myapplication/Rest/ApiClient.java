@@ -12,6 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 //    public static final String BASE_URL = "https://ujian-smai.000webhostapp.com/smai-admin/";
+  
     public static final String BASE_URL = "https://smai-ujian.xyz/smai-admin/";
     private static Retrofit retrofit;
 
