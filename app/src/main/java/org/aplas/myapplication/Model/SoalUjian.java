@@ -1,18 +1,18 @@
 package org.aplas.myapplication.Model;
 
 public class SoalUjian {
-    private DataBankSoal[] data;
+    private DataSoalUjian[] data;
 
     private String message;
 
     private String status;
 
-    public DataBankSoal[] getData ()
+    public DataSoalUjian[] getData ()
     {
         return data;
     }
 
-    public void setData (DataBankSoal[] data)
+    public void setData (DataSoalUjian[] data)
     {
         this.data = data;
     }

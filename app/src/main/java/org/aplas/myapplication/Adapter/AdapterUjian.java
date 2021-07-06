@@ -128,6 +128,8 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
         return ujian.getData().length;
     }
 
+
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView judul, guru, mapel, kelas, jurusan, mulai, durasi, tv14;
         EditText et_token;
