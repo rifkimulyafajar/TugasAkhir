@@ -29,22 +29,35 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
     Context context;
     private Onclickjawab onclickjawab;
 
-    public int getNilai() {
-        calculate();
-        return nilai;
-    }
 
     ArrayList<Integer> hasil = new ArrayList<Integer>();
 
     int nilai;
+    int jml_benar;
+    String id_ujian;
+
+    public String getId_ujian() {
+        return id_ujian;
+    }
+
+    public int getNilai() {
+        calculate();
+        return nilai;
+    }
 
     private void calculate() {
         for (int i = 0; i < hasil.size(); i++) {
             nilai+=hasil.get(i);
             Log.d("asdf", "calculate: "+hasil.get(i));
             Log.d("asdf", "calculate: nilai"+nilai);
+            if (hasil.get(i)!=0){
+                jml_benar++;
+            }
 
         }
+    }
+    public int getJml_benar() {
+        return jml_benar;
     }
 
     public AdapterSoalUjian(SoalUjian soal, Context context) {
@@ -63,6 +76,7 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        id_ujian= soal.getData()[position].getId_ujian();
         holder.wvsoal.loadData(soal.getData()[position].getSoal(), "text/html", "UTF-8");
 
         holder.a.setText(soal.getData()[position].getPilihan_a());
@@ -92,6 +106,9 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
                             tmp=true;
                             hasil.set(position,bobot);
                         }
+                        else{
+                            hasil.set(position,0);
+                        }
 
                         break;
                     case R.id.pil_b:
@@ -99,11 +116,17 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
                             Log.d("asdf", "benar");
                             hasil.set(position,bobot);
                         }
+                        else{
+                            hasil.set(position,0);
+                        }
                         break;
                     case R.id.pil_c:
                         if (checkTrue(holder.c.getText(), kunci)){
                             Log.d("asdf", "benar");
                             hasil.set(position,bobot);
+                        }
+                        else{
+                            hasil.set(position,0);
                         }
                         break;
                     case R.id.pil_d:
@@ -111,11 +134,17 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
                             Log.d("asdf", "benar");
                             hasil.set(position,bobot);
                         }
+                        else{
+                            hasil.set(position,0);
+                        }
                         break;
                     case R.id.pil_e:
                         if (checkTrue(holder.e.getText(), kunci)){
                             Log.d("asdf", "benar");
                             hasil.set(position,bobot);
+                        }
+                        else{
+                            hasil.set(position,0);
                         }
                         break;
 

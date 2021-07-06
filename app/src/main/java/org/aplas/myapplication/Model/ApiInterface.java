@@ -42,4 +42,12 @@ public interface ApiInterface {
     Call<SoalUjian> getSoalUjian(@Query("id_ujian") String id_ujian,
                                  @Query("jenis") String jenis);
 
+    @FormUrlEncoded
+    @POST("Api/Siswa/ujian")
+    Call<SoalUjian> sendSoalUjian(@Field("id_ujian") String id_ujian,
+                                  @Field("id_siswa") String id_siswa,
+                                  @Field("jml_benar") String jml_benar,
+                                  @Field("nilai") String nilai);
+
+
 }

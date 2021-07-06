@@ -61,15 +61,28 @@ public class SoalUjian extends AppCompatActivity {
         String bguru = bundle.getString("keyguru"); String bmapel = bundle.getString("keymapel");
         String bkelas = bundle.getString("keykelas"); String bjurus = bundle.getString("keyjurusan");
         String waktmulai = bundle.getString("waktumulai");
+        SharedPreferences sf = getSharedPreferences("KEY_SHARE", MODE_PRIVATE);
+        String IdSiswa = sf.getString("KEY_ID","");
+
+
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         selesai.setOnClickListener(view -> {
+
+            Log.d("asdf", "bundle: "+bundle);
+
             Toast.makeText(this, "Selesai", Toast.LENGTH_SHORT).show();
 //            Toast.makeText(this, Integer.toString(adapter.getNilai()) , Toast.LENGTH_SHORT).show();
 
 //            Log.d("asdf", "Selesai  "+getIntent().toUri(0));
-            Log.d("asdf", "onCreate: "+Integer.toString(adapter.getNilai()));
+            String IdUjian = adapter.getId_ujian();
+            int nilai = adapter.getNilai();
+            int jmlbenar = adapter.getJml_benar();
+            Log.d("asdf", "onCreate: "+nilai);
+            Log.d("asdf", "onCreate: jml benar"+jmlbenar);
+
+            sendData(IdUjian, IdSiswa, jmlbenar,nilai);
 
             Intent i = new Intent(context, MainActivity.class);
             context.startActivity(i);
@@ -100,6 +113,27 @@ public class SoalUjian extends AppCompatActivity {
 
         refresh();
     }
+
+    private void sendData(String idUjian, String idSiswa, int jmlbenar, int nilai) {
+        Log.d("asdf", "sendData: "+idUjian+" "+idSiswa+" "+jmlbenar+" "+nilai);
+
+        Call<org.aplas.myapplication.Model.SoalUjian> call = apiInterface.sendSoalUjian(idUjian, idSiswa, String.valueOf(jmlbenar), String.valueOf(nilai));
+        call.enqueue(new Callback<org.aplas.myapplication.Model.SoalUjian>() {
+
+            @Override
+            public void onResponse(Call<org.aplas.myapplication.Model.SoalUjian> call, Response<org.aplas.myapplication.Model.SoalUjian> response) {
+                if (response.isSuccessful()){
+                    Toast.makeText(context, "send success", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<org.aplas.myapplication.Model.SoalUjian> call, Throwable t) {
+                Toast.makeText(context, "" +t, Toast.LENGTH_LONG).show();
+            }
+
+            });
+        }
 
 
     private void refresh() {
