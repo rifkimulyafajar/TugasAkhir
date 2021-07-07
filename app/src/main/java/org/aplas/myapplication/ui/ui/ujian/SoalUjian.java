@@ -45,7 +45,7 @@ public class SoalUjian extends AppCompatActivity {
     TextView guru, mapel, kelas, jurusan, durasi;
     Button selesai;
 
-    long dif, difMinutes;
+    long diff, diffMinutes, diffHours;
 
 
     @Override
@@ -75,9 +75,11 @@ public class SoalUjian extends AppCompatActivity {
             akhir = df.parse(bakhir);
             sekarang = Calendar.getInstance().getTime();
 
-            dif = akhir.getTime() - sekarang.getTime();
+            diff = akhir.getTime() - sekarang.getTime();
 
-            difMinutes = (dif / (60 * 1000) % 60) +1;
+            diffMinutes = (diff / (60 * 1000) % 60) +1;
+            diffHours = diff / (60 * 60 * 1000) % 24;
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,7 +101,9 @@ public class SoalUjian extends AppCompatActivity {
 
 
         //countdown durasi
-        new CountDownTimer((Integer.parseInt(String.valueOf(difMinutes)) * 60000), 1000) {
+        new CountDownTimer(((Integer.parseInt(String.valueOf(diffMinutes)) * 60000) +
+                Integer.parseInt(String.valueOf(diffHours)) * 3600000 ),
+                1000) {
 
             public void onTick(long millisUntilFinished) {
                 String waktu = String.format("%02d:%02d:%02d",
