@@ -1,12 +1,10 @@
 package org.aplas.myapplication.Model;
 
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -35,7 +33,7 @@ public interface ApiInterface {
 
     @GET("Api/Siswa/ujian")
     Call<Ujian> getUjian(@Query("id_kelas") String id_kelas,
-                           @Query("id_jurusan") String id_jurusan);
+                         @Query("id_jurusan") String id_jurusan);
 
 
     @GET("Api/Siswa/soalujian")
@@ -50,4 +48,10 @@ public interface ApiInterface {
                                   @Field("nilai") String nilai);
 
 
+    @GET("Api/Siswa/hasil_ujian")
+    Call<HasilUjian> getHasilUjian(@Query("id_kelas") String id_kelas,
+                                   @Query("id_jurusan") String id_jurusan);
+
+    @GET("Api/Siswa/detail_hasil_ujian")
+    Call<DetailHasilUjian> getDetailHasilUjian(@Query("id_ujian") String id_ujian);
 }

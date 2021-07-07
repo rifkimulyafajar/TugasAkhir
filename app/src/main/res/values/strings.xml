@@ -10,7 +10,7 @@
 
     <string name="menu_ujian">Ujian</string>
     <string name="menu_bank_soal">Bank Soal</string>
-    <string name="menu_peringkat">Peringkat</string>
+    <string name="menu_hasil_ujian">Hasil Ujian</string>
     <string name="menu_materi">Materi</string>
 
     <string name="home_second">Home Second</string>

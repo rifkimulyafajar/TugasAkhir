@@ -17,9 +17,9 @@
     </fragment>
     <fragment
         android:id="@+id/nav_home_second"
-        android:name="org.aplas.myapplication.ui.ui.peringkat.PeringkatFragment"
+        android:name="org.aplas.myapplication.ui.ui.hasil_ujian.HasilUjianFragment"
         android:label="@string/home_second"
-        tools:layout="@layout/fragment_peringkat">
+        tools:layout="@layout/fragment_hasil_ujian">
         <action
             android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
             app:destination="@id/nav_ujian" />
@@ -36,10 +36,10 @@
         tools:layout="@layout/fragment_bank_soal" />
 
     <fragment
-        android:id="@+id/nav_peringkat"
-        android:name="org.aplas.myapplication.ui.ui.peringkat.PeringkatFragment"
-        android:label="@string/menu_peringkat"
-        tools:layout="@layout/fragment_peringkat" />
+        android:id="@+id/nav_hasil_ujian"
+        android:name="org.aplas.myapplication.ui.ui.hasil_ujian.HasilUjianFragment"
+        android:label="@string/menu_hasil_ujian"
+        tools:layout="@layout/fragment_hasil_ujian" />
 
     <fragment
         android:id="@+id/nav_materi"

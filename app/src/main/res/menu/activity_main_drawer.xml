@@ -5,17 +5,17 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_ujian"
-            android:icon="@drawable/ic_menu_ujian"
-            android:title="@string/menu_ujian" />
-        <item
             android:id="@+id/nav_bank_soal"
             android:icon="@drawable/ic_menu_bank_soal"
             android:title="@string/menu_bank_soal" />
         <item
-            android:id="@+id/nav_peringkat"
+            android:id="@+id/nav_ujian"
+            android:icon="@drawable/ic_menu_ujian"
+            android:title="@string/menu_ujian" />
+        <item
+            android:id="@+id/nav_hasil_ujian"
             android:icon="@drawable/ic_menu_peringkat"
-            android:title="@string/menu_peringkat" />
+            android:title="@string/menu_hasil_ujian" />
         <item
             android:id="@+id/nav_materi"
             android:icon="@drawable/ic_menu_materi1"

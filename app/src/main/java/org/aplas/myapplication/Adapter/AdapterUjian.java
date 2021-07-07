@@ -44,7 +44,6 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
         View view = LayoutInflater.from(context).inflate(R.layout.list_ujian, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
 
-
         return viewHolder;
     }
 

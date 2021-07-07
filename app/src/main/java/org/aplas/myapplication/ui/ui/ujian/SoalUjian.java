@@ -39,7 +39,6 @@ public class SoalUjian extends AppCompatActivity {
     ApiInterface apiInterface;
     Context context = this;
 
-
     private RecyclerView recyclerView;
     private AdapterSoalUjian adapter;
 
@@ -149,7 +148,6 @@ public class SoalUjian extends AppCompatActivity {
     }
 
     private void sendData(String idUjian, String idSiswa, int jmlbenar, int nilai) {
-        Log.d("asdf", "sendData: "+idUjian+" "+idSiswa+" "+jmlbenar+" "+nilai);
 
         Call<org.aplas.myapplication.Model.SoalUjian> call = apiInterface.sendSoalUjian(idUjian, idSiswa, String.valueOf(jmlbenar), String.valueOf(nilai));
         call.enqueue(new Callback<org.aplas.myapplication.Model.SoalUjian>() {
