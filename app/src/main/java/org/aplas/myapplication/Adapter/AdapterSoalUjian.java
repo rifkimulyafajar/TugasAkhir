@@ -27,10 +27,8 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
 
     SoalUjian soal;
     Context context;
-    private Onclickjawab onclickjawab;
 
-
-    ArrayList<Integer> hasil = new ArrayList<Integer>();
+    ArrayList<Integer> hasil = new ArrayList<>();
 
     int nilai;
     int jml_benar;
@@ -48,14 +46,13 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
     private void calculate() {
         for (int i = 0; i < hasil.size(); i++) {
             nilai+=hasil.get(i);
-            Log.d("asdf", "calculate: "+hasil.get(i));
-            Log.d("asdf", "calculate: nilai"+nilai);
-            if (hasil.get(i)!=0){
+            if (hasil.get(i) != 0){
                 jml_benar++;
             }
 
         }
     }
+
     public int getJml_benar() {
         return jml_benar;
     }
@@ -88,7 +85,6 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
         String kunci = soal.getData()[position].getKunci();
         int bobot = Integer.parseInt(soal.getData()[position].getNilai());
 
-        Log.d("asdf", "onBindViewHolder: "+nilai);
         hasil.add(0);
 
 
@@ -100,7 +96,6 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
                 switch (id){
                     case R.id.pil_a:
                         if (checkTrue(holder.a.getText(), kunci)){
-                            Log.d("asdf", "benar");
                             tmp=true;
                             hasil.set(position,bobot);
                         }
@@ -111,7 +106,6 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
                         break;
                     case R.id.pil_b:
                         if (checkTrue(holder.b.getText(), kunci)){
-                            Log.d("asdf", "benar");
                             hasil.set(position,bobot);
                         }
                         else{
@@ -120,7 +114,6 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
                         break;
                     case R.id.pil_c:
                         if (checkTrue(holder.c.getText(), kunci)){
-                            Log.d("asdf", "benar");
                             hasil.set(position,bobot);
                         }
                         else{
@@ -129,7 +122,6 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
                         break;
                     case R.id.pil_d:
                         if (checkTrue(holder.d.getText(), kunci)){
-                            Log.d("asdf", "benar");
                             hasil.set(position,bobot);
                         }
                         else{
@@ -138,7 +130,6 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
                         break;
                     case R.id.pil_e:
                         if (checkTrue(holder.e.getText(), kunci)){
-                            Log.d("asdf", "benar");
                             hasil.set(position,bobot);
                         }
                         else{
@@ -152,7 +143,7 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
                 if (kunci.equals(text)){
                     return true;
                 }
-                return false ;
+                return false;
             }
 
         });
@@ -168,8 +159,6 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
-        TextView durasi;
 
         WebView wvsoal;
 
@@ -187,10 +176,7 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
             e = itemView.findViewById(R.id.pil_e);
             rg = itemView.findViewById(R.id.radioGroup2);
 
-            durasi = itemView.findViewById(R.id.TVdurasi);
         }
     }
-    public interface Onclickjawab{
-        public void onClickjawab(Intent intent);
-    }
+
 }

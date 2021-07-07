@@ -42,8 +42,10 @@ public class SoalUjian extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AdapterSoalUjian adapter;
 
-    TextView guru, mapel, kelas, jurusan;
+    TextView guru, mapel, kelas, jurusan, durasi;
     Button selesai;
+
+    long dif, difMinutes;
 
 
     @Override
@@ -53,39 +55,35 @@ public class SoalUjian extends AppCompatActivity {
 
         guru = findViewById(R.id.TVguru); mapel = findViewById(R.id.TVmapel);
         kelas = findViewById(R.id.TVkelas); jurusan = findViewById(R.id.TVjurusan);
+        durasi = findViewById(R.id.TVdurasi);
         selesai = findViewById(R.id.btnStopUjian);
 
         Bundle bundle = getIntent().getExtras();
         String bguru = bundle.getString("keyguru"); String bmapel = bundle.getString("keymapel");
         String bkelas = bundle.getString("keykelas"); String bjurus = bundle.getString("keyjurusan");
+
+        String bakhir = bundle.getString("keyakhir");
+
         SharedPreferences sf = getSharedPreferences("KEY_SHARE", MODE_PRIVATE);
         String IdSiswa = sf.getString("KEY_ID","");
 
-        String bdurasi = bundle.getString("keydurasi"); String bakhir = bundle.getString("keyakhir");
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        // cek waktu akhir
+
+        //ambil berapa menit antara waktu selesai ujian dengan waktu sekarang
+        Date akhir, sekarang;
         try {
+            akhir = df.parse(bakhir);
+            sekarang = Calendar.getInstance().getTime();
 
-            Date date = df.parse(bakhir);
-            int cek = date.compareTo(Calendar.getInstance().getTime());
-            if (cek == 0 || cek < 0) {
-                Toast.makeText(SoalUjian.this, "Selesai", Toast.LENGTH_SHORT).show();
+            dif = akhir.getTime() - sekarang.getTime();
 
-                String IdUjian = adapter.getId_ujian();
-                int nilai = adapter.getNilai();
-                int jmlbenar = adapter.getJml_benar();
+            difMinutes = (dif / (60 * 1000) % 60) +1;
 
-                sendData(IdUjian, IdSiswa, jmlbenar,nilai);
-
-//              Intent i = new Intent(SoalUjian.this, UjianFragment.class);
-//              startActivity(i);
-                finish();
-            }
-
-        } catch (ParseException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
+        //btn selesai mengerjakan
         selesai.setOnClickListener(view -> {
 
             Toast.makeText(this, "Selesai", Toast.LENGTH_SHORT).show();
@@ -100,9 +98,8 @@ public class SoalUjian extends AppCompatActivity {
         });
 
 
-        TextView durasi = findViewById(R.id.TVdurasi);
-
-        new CountDownTimer((Integer.parseInt(bdurasi) * 60000), 1000) {
+        //countdown durasi
+        new CountDownTimer((Integer.parseInt(String.valueOf(difMinutes)) * 60000), 1000) {
 
             public void onTick(long millisUntilFinished) {
                 String waktu = String.format("%02d:%02d:%02d",
@@ -112,7 +109,6 @@ public class SoalUjian extends AppCompatActivity {
                         TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
                                 TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
 
-                //Menampilkannya pada TexView
                 durasi.setText("Waktu " +waktu);
 
 
@@ -129,8 +125,6 @@ public class SoalUjian extends AppCompatActivity {
 
                 sendData(IdUjian, IdSiswa, jmlbenar,nilai);
 
-//                Intent i = new Intent(SoalUjian.this, UjianFragment.class);
-//                startActivity(i);
                 finish();
             }
 
