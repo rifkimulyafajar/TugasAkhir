@@ -91,8 +91,6 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
         Log.d("asdf", "onBindViewHolder: "+nilai);
         hasil.add(0);
 
-//        boolean tmp;
-//        hasil[position] = tmp;
 
         holder.rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             boolean tmp;
@@ -171,7 +169,6 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-//        TextView durasi, a,b,c,d,e ;
         TextView durasi;
 
         WebView wvsoal;
@@ -182,13 +179,12 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            wvsoal = itemView.findViewById(R.id.wv_soal);
+            wvsoal = itemView.findViewById(R.id.WV_soal);
             a = itemView.findViewById(R.id.pil_a);
             b = itemView.findViewById(R.id.pil_b);
             c = itemView.findViewById(R.id.pil_c);
             d = itemView.findViewById(R.id.pil_d);
             e = itemView.findViewById(R.id.pil_e);
-            durasi = itemView.findViewById(R.id.textView14);
             rg = itemView.findViewById(R.id.radioGroup2);
 
             durasi = itemView.findViewById(R.id.TVdurasi);

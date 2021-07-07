@@ -41,19 +41,20 @@ public class DataUjian {
 
     private String nilai;
 
-    public String getNilai() {
-        return nilai;
-    }
-
-    public void setNilai(String nilai) {
-        this.nilai = nilai;
-      
     public String getJudul_ujian() {
         return judul_ujian;
     }
 
     public void setJudul_ujian(String judul_ujian) {
         this.judul_ujian = judul_ujian;
+    }
+
+    public String getNilai() {
+        return nilai;
+    }
+
+    public void setNilai(String nilai) {
+        this.nilai = nilai;
     }
 
     public String getWaktu_selesai ()

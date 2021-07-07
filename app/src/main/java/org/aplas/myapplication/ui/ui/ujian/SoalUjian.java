@@ -52,10 +52,6 @@ public class SoalUjian extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_soal_ujian);
 
-//        Log.d("sharepref", "ID"+sharedPref.getString(IDSISWA));
-
-        int calculate;
-
         guru = findViewById(R.id.TVguru); mapel = findViewById(R.id.TVmapel);
         kelas = findViewById(R.id.TVkelas); jurusan = findViewById(R.id.TVjurusan);
         selesai = findViewById(R.id.btnStopUjian);
@@ -63,57 +59,50 @@ public class SoalUjian extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String bguru = bundle.getString("keyguru"); String bmapel = bundle.getString("keymapel");
         String bkelas = bundle.getString("keykelas"); String bjurus = bundle.getString("keyjurusan");
-        String waktmulai = bundle.getString("waktumulai");
         SharedPreferences sf = getSharedPreferences("KEY_SHARE", MODE_PRIVATE);
         String IdSiswa = sf.getString("KEY_ID","");
 
-
         String bdurasi = bundle.getString("keydurasi"); String bakhir = bundle.getString("keyakhir");
-      
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-        selesai.setOnClickListener(view -> {
-
-            Log.d("asdf", "bundle: "+bundle);
-
-            Toast.makeText(this, "Selesai", Toast.LENGTH_SHORT).show();
-//            Toast.makeText(this, Integer.toString(adapter.getNilai()) , Toast.LENGTH_SHORT).show();
-
-//            Log.d("asdf", "Selesai  "+getIntent().toUri(0));
-            String IdUjian = adapter.getId_ujian();
-            int nilai = adapter.getNilai();
-            int jmlbenar = adapter.getJml_benar();
-            Log.d("asdf", "onCreate: "+nilai);
-            Log.d("asdf", "onCreate: jml benar"+jmlbenar);
-
-            sendData(IdUjian, IdSiswa, jmlbenar,nilai);
-
-            Intent i = new Intent(context, MainActivity.class);
-            context.startActivity(i);
-        });
-
-
-        // countdown function
-
+        // cek waktu akhir
         try {
-            Date tmp = df.parse(waktmulai);
 
             Date date = df.parse(bakhir);
             int cek = date.compareTo(Calendar.getInstance().getTime());
             if (cek == 0 || cek < 0) {
-                Intent i = new Intent(SoalUjian.this, UjianFragment.class);
-                startActivity(i);
+                Toast.makeText(SoalUjian.this, "Selesai", Toast.LENGTH_SHORT).show();
+
+                String IdUjian = adapter.getId_ujian();
+                int nilai = adapter.getNilai();
+                int jmlbenar = adapter.getJml_benar();
+
+                sendData(IdUjian, IdSiswa, jmlbenar,nilai);
+
+//              Intent i = new Intent(SoalUjian.this, UjianFragment.class);
+//              startActivity(i);
                 finish();
-                Toast.makeText(SoalUjian.this, "Waktu Habis ..!!", Toast.LENGTH_LONG).show();
             }
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
+        selesai.setOnClickListener(view -> {
+
+            Toast.makeText(this, "Selesai", Toast.LENGTH_SHORT).show();
+
+            String IdUjian = adapter.getId_ujian();
+            int nilai = adapter.getNilai();
+            int jmlbenar = adapter.getJml_benar();
+
+            sendData(IdUjian, IdSiswa, jmlbenar,nilai);
+
+            finish();
+        });
+
+
         TextView durasi = findViewById(R.id.TVdurasi);
 
-//        new CountDownTimer(6000, 1000) {
         new CountDownTimer((Integer.parseInt(bdurasi) * 60000), 1000) {
 
             public void onTick(long millisUntilFinished) {
@@ -126,14 +115,24 @@ public class SoalUjian extends AppCompatActivity {
 
                 //Menampilkannya pada TexView
                 durasi.setText("Waktu " +waktu);
+
+
             }
 
             public void onFinish() {
                 durasi.setText("done!");
-                Intent i = new Intent(SoalUjian.this, UjianFragment.class);
-                startActivity(i);
+
+                Toast.makeText(SoalUjian.this, "Selesai", Toast.LENGTH_SHORT).show();
+
+                String IdUjian = adapter.getId_ujian();
+                int nilai = adapter.getNilai();
+                int jmlbenar = adapter.getJml_benar();
+
+                sendData(IdUjian, IdSiswa, jmlbenar,nilai);
+
+//                Intent i = new Intent(SoalUjian.this, UjianFragment.class);
+//                startActivity(i);
                 finish();
-                Toast.makeText(SoalUjian.this, "Waktu Habis ..!!", Toast.LENGTH_LONG).show();
             }
 
         }.start();

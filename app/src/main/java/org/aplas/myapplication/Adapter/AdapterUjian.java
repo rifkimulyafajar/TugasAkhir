@@ -1,5 +1,6 @@
 package org.aplas.myapplication.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -65,7 +66,7 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
         holder.mapel.setText(smapel);
         holder.kelas.setText("Kelas : " +skelas);
         holder.jurusan.setText("Jurusan : " +sjurusan);
-        holder.mulai.setText("Waktu Mulai : " +ujian.getData()[position].getWaktu_mulai());
+        holder.mulai.setText("Waktu Mulai : " +swaktumulai);
         holder.durasi.setText("Durasi : " +sdurasi+ " menit");
 
         String id_ujian = ujian.getData()[position].getId_ujian();
@@ -109,6 +110,9 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
                     i.putExtra("keydurasi", sdurasi); i.putExtra("keyakhir", akhir);
 
                     context.startActivity(i);
+                    Activity act = new Activity();
+                    act.getBaseContext();
+                    act.finish();
                 }
                 else {
                     Toast.makeText(context, "Token Salah !!", Toast.LENGTH_LONG).show();
