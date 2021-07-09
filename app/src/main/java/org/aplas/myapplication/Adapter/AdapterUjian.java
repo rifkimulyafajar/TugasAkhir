@@ -187,25 +187,10 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
     }
 
 
-    public void getDataSiswa() {
-        if (datasiswa.isEmpty()){
-            Log.d("asdf", "getDataSiswa: kosong");
-        }
-        for (int i = 0; i < datasiswa.size(); i++) {
-            Log.d("asdf", "getDataSiswa: "+datasiswa.get(i));
-        }
-    }
-
     public void setDataUjian(String cek) {
         dataUjian.add(cek);
     }
 
-    public void getDataUjian(){
-        for (int i = 0; i < dataUjian.size(); i++) {
-            Log.d("asdf", "getDataUjian: "+dataUjian.get(i));
-            Log.d("asdf", "getDataCekUjian: "+cekSudahUjian.get(i));
-        }
-    }
 
     public void cari(){
         for (int i = 0; i < dataUjian.size(); i++) {
