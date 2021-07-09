@@ -90,8 +90,12 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
         String token = ujian.getData()[position].getToken();
         String akhir = ujian.getData()[position].getWaktu_selesai();
 
+        dataUjian.add(id_ujian);
+        cekSudahUjian.add(false);
+
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
         try {
             Date date1 = df.parse(ujian.getData()[position].getWaktu_mulai());
             Date date2 = df.parse(ujian.getData()[position].getWaktu_selesai());
@@ -101,20 +105,17 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
                 holder.token.setVisibility(View.INVISIBLE);
             }else if(cekakhir<0){
                 holder.token.setVisibility(View.INVISIBLE);
+            }else if (!cekSudahUjian.get(position)){
+                holder.token.setVisibility(View.VISIBLE);
+            }else {
+                holder.token.setVisibility(View.INVISIBLE);
             }
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        dataUjian.add(id_ujian);
-        cekSudahUjian.add(false);
 
-        if (!cekSudahUjian.get(position)){
-            holder.token.setVisibility(View.VISIBLE);
-        }else {
-            holder.token.setVisibility(View.INVISIBLE);
-        }
 
         holder.token.setOnClickListener(view -> {
             if (holder.et_token.getText().toString().isEmpty()) {
