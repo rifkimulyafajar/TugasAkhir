@@ -34,8 +34,7 @@ public class HasilUjianFragment extends Fragment {
 
     SharedPreferences sharedPreferences;
     private static final String SHARE = "KEY_SHARE";
-    private static final String ID_KLS = "KEY_ID_KLS";
-    private static final String ID_JRS = "KEY_ID_JRS";
+    private static final String ID = "KEY_ID";
 
     Button refresh;
 
@@ -57,10 +56,9 @@ public class HasilUjianFragment extends Fragment {
 
     private void refresh() {
         sharedPreferences = getActivity().getSharedPreferences(SHARE, MODE_PRIVATE);
-        String kls = sharedPreferences.getString(ID_KLS, "");
-        String jrs = sharedPreferences.getString(ID_JRS, "");
+        String sid = sharedPreferences.getString(ID, "");
 
-        Call<HasilUjian> call = apiInterface.getHasilUjian(kls, jrs);
+        Call<HasilUjian> call = apiInterface.getHasilUjian(sid);
         call.enqueue(new Callback<HasilUjian>() {
             @Override
             public void onResponse(Call<HasilUjian> call, Response<HasilUjian> response) {

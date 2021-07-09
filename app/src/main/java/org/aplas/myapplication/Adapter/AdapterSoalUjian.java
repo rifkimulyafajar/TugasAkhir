@@ -1,18 +1,12 @@
 package org.aplas.myapplication.Adapter;
 
-import android.app.LauncherActivity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +15,6 @@ import org.aplas.myapplication.Model.SoalUjian;
 import org.aplas.myapplication.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.ViewHolder> {
 
