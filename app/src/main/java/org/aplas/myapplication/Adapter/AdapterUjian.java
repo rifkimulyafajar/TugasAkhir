@@ -3,7 +3,9 @@ package org.aplas.myapplication.Adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.aplas.myapplication.Model.ApiInterface;
+import org.aplas.myapplication.Model.HasilUjianSiswa;
 import org.aplas.myapplication.Model.Ujian;
 import org.aplas.myapplication.R;
 import org.aplas.myapplication.ui.ui.ujian.SoalUjian;
@@ -25,13 +29,25 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> {
 
     Ujian ujian;
     Context context;
+
+    ArrayList<String> datasiswa = new ArrayList<String>();
+    ArrayList<String> dataUjian = new ArrayList<String>();
+    ArrayList<Boolean> cekSudahUjian = new ArrayList<Boolean>();
+    private boolean activate = true;
 
     public AdapterUjian(Ujian ujian, Context context) {
         this.ujian = ujian;
@@ -53,6 +69,7 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
 
         String sguru, smapel, skelas, sjurusan, swaktumulai, sdurasi;
 
+
         sguru = ujian.getData()[position].getNama();
         smapel = ujian.getData()[position].getMapel();
         skelas = ujian.getData()[position].getKelas();
@@ -73,6 +90,7 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
         String token = ujian.getData()[position].getToken();
         String akhir = ujian.getData()[position].getWaktu_selesai();
 
+
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             Date date1 = df.parse(ujian.getData()[position].getWaktu_mulai());
@@ -89,13 +107,25 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
             e.printStackTrace();
         }
 
+        dataUjian.add(id_ujian);
+        cekSudahUjian.add(false);
+
+        if (!cekSudahUjian.get(position)){
+            holder.token.setVisibility(View.VISIBLE);
+        }else {
+            holder.token.setVisibility(View.INVISIBLE);
+        }
 
         holder.token.setOnClickListener(view -> {
             if (holder.et_token.getText().toString().isEmpty()) {
                 Toast.makeText(context, "Token Harus Diisi !!", Toast.LENGTH_LONG).show();
             }
+
             else {
                 if (holder.et_token.getText().toString().equals(token)) {
+//                    token benar
+
+                    holder.token.setVisibility(View.INVISIBLE);
 
                     LocalDateTime time = LocalDateTime.now();
                     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
@@ -114,6 +144,7 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
                     act.finish();
                 }
                 else {
+//                    token salah
                     Toast.makeText(context, "Token Salah !!", Toast.LENGTH_LONG).show();
                 }
             }
@@ -126,11 +157,11 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
 
     }
 
+
     @Override
     public int getItemCount() {
         return ujian.getData().length;
     }
-
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -150,4 +181,49 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
 
         }
     }
+
+    public void addDataSiswa(String value){
+        datasiswa.add(value);
+    }
+
+
+    public void getDataSiswa() {
+        if (datasiswa.isEmpty()){
+            Log.d("asdf", "getDataSiswa: kosong");
+        }
+        for (int i = 0; i < datasiswa.size(); i++) {
+            Log.d("asdf", "getDataSiswa: "+datasiswa.get(i));
+        }
+    }
+
+    public void setDataUjian(String cek) {
+        dataUjian.add(cek);
+    }
+
+    public void getDataUjian(){
+        for (int i = 0; i < dataUjian.size(); i++) {
+            Log.d("asdf", "getDataUjian: "+dataUjian.get(i));
+            Log.d("asdf", "getDataCekUjian: "+cekSudahUjian.get(i));
+        }
+    }
+
+    public void cari(){
+        for (int i = 0; i < dataUjian.size(); i++) {
+            for (int j = 0; j < datasiswa.size() ; j++) {
+                if (dataUjian.get(i).equals(datasiswa.get(j))){
+                    cekSudahUjian.set(i,true);
+                    notifyDataSetChanged();
+                }
+            }
+        }
+    }
+
+    public void activateButtonsToken(boolean activate) {
+        this.activate = activate;
+        notifyDataSetChanged();
+    }
+
+
+
+
 }

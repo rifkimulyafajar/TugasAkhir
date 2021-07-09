@@ -1,6 +1,7 @@
 package org.aplas.myapplication.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,6 @@ public class AdapterDetailHasilUjian extends RecyclerView.Adapter<AdapterDetailH
     DetailHasilUjian detail;
     Context context;
 
-    int no = 0;
 
     public AdapterDetailHasilUjian(DetailHasilUjian detail, Context context) {
         this.detail = detail;
@@ -31,14 +31,12 @@ public class AdapterDetailHasilUjian extends RecyclerView.Adapter<AdapterDetailH
     public ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.list_detail_hasil_ujian, parent, false);
         AdapterDetailHasilUjian.ViewHolder viewHolder = new AdapterDetailHasilUjian.ViewHolder(view);
-
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-        no++;
-        holder.nama.setText(String.valueOf(no));
+        holder.nomor.setText(String.valueOf(position+1));
         holder.nama.setText(detail.getData()[position].getNama());
         holder.nilai.setText(detail.getData()[position].getNilai());
 

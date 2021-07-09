@@ -2,6 +2,7 @@ package org.aplas.myapplication.ui.ui.ujian;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +13,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.aplas.myapplication.Adapter.AdapterDetailHasilUjian;
 import org.aplas.myapplication.Adapter.AdapterUjian;
 import org.aplas.myapplication.Model.ApiInterface;
+import org.aplas.myapplication.Model.DetailHasilUjian;
+import org.aplas.myapplication.Model.HasilUjianSiswa;
 import org.aplas.myapplication.Model.Ujian;
 import org.aplas.myapplication.R;
 import org.aplas.myapplication.Rest.ApiClient;
+import org.aplas.myapplication.ui.ui.hasil_ujian.DetailHasilUjianActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,6 +54,7 @@ public class UjianFragment extends Fragment {
         refresh = view.findViewById(R.id.btn_refresh);
 
         refresh();
+//        refreshbtnsiswa();
 
         return view;
     }
@@ -64,15 +70,16 @@ public class UjianFragment extends Fragment {
             public void onResponse(Call<Ujian> call, Response<Ujian> response) {
                 Ujian ujian = response.body();
                 if (response.isSuccessful()) {
+                    adapter = new AdapterUjian(ujian, getContext());
                     if (ujian != null) {
-                        for (int i=0; i<ujian.getData().length; i++) {
-                            adapter = new AdapterUjian(ujian, getContext());
+                    refreshbtnsiswa();
+                        for (int i = 0; i < ujian.getData().length; i++) {
+//                            adapter = new AdapterUjian(ujian, getContext());
                             recyclerView.setAdapter(adapter);
                         }
                         refresh.setVisibility(View.INVISIBLE);
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(getContext(), "Belum Ada Ujian untuk saat ini", Toast.LENGTH_LONG).show();
                     refresh.setVisibility(View.VISIBLE);
                     refresh.setOnClickListener(view -> {
@@ -83,7 +90,7 @@ public class UjianFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Ujian> call, Throwable t) {
-                Toast.makeText(getActivity(), "" +t, Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "" + t, Toast.LENGTH_LONG).show();
                 refresh.setVisibility(View.VISIBLE);
                 refresh.setOnClickListener(view -> {
                     refresh();
@@ -92,4 +99,43 @@ public class UjianFragment extends Fragment {
         });
 
     }
+
+    private void refreshbtnsiswa() {
+        sharedPreferences = getActivity().getSharedPreferences(SHARE, MODE_PRIVATE);
+        String siswa = sharedPreferences.getString("KEY_ID", "");
+
+        Call<HasilUjianSiswa> call = apiInterface.getHasilUjianSiswa(siswa);
+        call.enqueue(new Callback<HasilUjianSiswa>() {
+            @Override
+            public void onResponse(Call<HasilUjianSiswa> call, Response<HasilUjianSiswa> response) {
+                HasilUjianSiswa hasilUjianSiswa = response.body();
+                if (response.isSuccessful()) {
+                    if (hasilUjianSiswa != null) {
+                        for (int i = 0; i < hasilUjianSiswa.getData().length; i++) {
+                            String data = hasilUjianSiswa.getData()[i].getId_ujian();
+                            adapter.addDataSiswa(data);
+                            adapter.cari();
+
+                        }
+//                        adapter.getDataSiswa();
+//                        adapter.getDataUjian();
+                        refresh.setVisibility(View.INVISIBLE);
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Belum Ada Ujian untuk saat ini", Toast.LENGTH_LONG).show();
+//
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HasilUjianSiswa> call, Throwable t) {
+                Toast.makeText(getActivity(), "" + t, Toast.LENGTH_LONG).show();
+//
+            }
+
+        });
+
+
+    }
+
 }

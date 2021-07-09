@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import org.aplas.myapplication.Adapter.AdapterDetailHasilUjian;
@@ -56,6 +57,8 @@ public class DetailHasilUjianActivity extends AppCompatActivity {
     private void refresh() {
         Bundle bundle = getIntent().getExtras();
         String id = bundle.getString("id");
+
+        Log.d("asdf", "refresh: "+id);
 
         Call<DetailHasilUjian> call = apiInterface.getDetailHasilUjian(id);
         call.enqueue(new Callback<DetailHasilUjian>() {

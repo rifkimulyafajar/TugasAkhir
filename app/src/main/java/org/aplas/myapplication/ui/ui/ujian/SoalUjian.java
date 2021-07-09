@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import org.aplas.myapplication.Adapter.AdapterSoalUjian;
 import org.aplas.myapplication.Model.ApiInterface;
+import org.aplas.myapplication.Model.DetailHasilUjian;
 import org.aplas.myapplication.R;
 import org.aplas.myapplication.Rest.ApiClient;
 import org.aplas.myapplication.ui.MainActivity;
