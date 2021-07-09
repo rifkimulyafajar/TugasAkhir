@@ -49,8 +49,7 @@ public interface ApiInterface {
 
 
     @GET("Api/Siswa/hasil_ujian")
-    Call<HasilUjian> getHasilUjian(@Query("id_kelas") String id_kelas,
-                                   @Query("id_jurusan") String id_jurusan);
+    Call<HasilUjian> getHasilUjian(@Query("id_siswa") String id_siswa);
 
     @GET("Api/Siswa/detail_hasil_ujian")
     Call<DetailHasilUjian> getDetailHasilUjian(@Query("id_ujian") String id_ujian);

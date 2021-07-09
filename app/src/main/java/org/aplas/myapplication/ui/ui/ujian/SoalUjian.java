@@ -43,7 +43,7 @@ public class SoalUjian extends AppCompatActivity {
     private AdapterSoalUjian adapter;
 
     TextView guru, mapel, kelas, jurusan, durasi;
-    Button selesai;
+    Button selesai, refresh;
 
     long diff, diffMinutes, diffHours;
 
@@ -57,6 +57,7 @@ public class SoalUjian extends AppCompatActivity {
         kelas = findViewById(R.id.TVkelas); jurusan = findViewById(R.id.TVjurusan);
         durasi = findViewById(R.id.TVdurasi);
         selesai = findViewById(R.id.btnStopUjian);
+        refresh = findViewById(R.id.button_refresh);
 
         Bundle bundle = getIntent().getExtras();
         String bguru = bundle.getString("keyguru"); String bmapel = bundle.getString("keymapel");
@@ -184,11 +185,22 @@ public class SoalUjian extends AppCompatActivity {
                         }
                     }
                 }
+                else {
+                    Toast.makeText(SoalUjian.this, "Belum Ada Ujian untuk saat ini", Toast.LENGTH_LONG).show();
+                    refresh.setVisibility(View.VISIBLE);
+                    refresh.setOnClickListener(view -> {
+                        refresh();
+                    });
+                }
             }
 
             @Override
             public void onFailure(Call<org.aplas.myapplication.Model.SoalUjian> call, Throwable t) {
                 Toast.makeText(SoalUjian.this, "" +t, Toast.LENGTH_LONG).show();
+                refresh.setVisibility(View.VISIBLE);
+                refresh.setOnClickListener(view -> {
+                    refresh();
+                });
             }
         });
     }
