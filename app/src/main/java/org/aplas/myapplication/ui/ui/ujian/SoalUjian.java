@@ -87,20 +87,6 @@ public class SoalUjian extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        //btn selesai mengerjakan
-        selesai.setOnClickListener(view -> {
-
-            Toast.makeText(this, "Selesai", Toast.LENGTH_SHORT).show();
-
-            String IdUjian = adapter.getId_ujian();
-            int nilai = adapter.getNilai();
-            int jmlbenar = adapter.getJml_benar();
-
-            sendData(IdUjian, IdSiswa, jmlbenar,nilai);
-
-            finish();
-        });
-
 
         //countdown durasi
         new CountDownTimer(((Integer.parseInt(String.valueOf(diffMinutes)) * 60000) +
@@ -116,7 +102,6 @@ public class SoalUjian extends AppCompatActivity {
                                 TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
 
                 durasi.setText("Waktu " +waktu);
-
 
             }
 
@@ -135,6 +120,22 @@ public class SoalUjian extends AppCompatActivity {
             }
 
         }.start();
+
+
+        //btn selesai mengerjakan
+        selesai.setOnClickListener(view -> {
+
+            Toast.makeText(this, "Selesai", Toast.LENGTH_SHORT).show();
+
+            String IdUjian = adapter.getId_ujian();
+            int nilai = adapter.getNilai();
+            int jmlbenar = adapter.getJml_benar();
+
+            sendData(IdUjian, IdSiswa, jmlbenar,nilai);
+
+            finish();
+        });
+
 
         guru.setText(bguru); mapel.setText(bmapel); kelas.setText(bkelas); jurusan.setText(bjurus);
 

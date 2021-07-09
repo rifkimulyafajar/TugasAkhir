@@ -73,7 +73,7 @@ public class HasilUjianFragment extends Fragment {
                     }
                 }
                 else {
-                    Toast.makeText(getContext(), "Belum Ada Ujian untuk saat ini", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Anda belum mengerjakan ujian", Toast.LENGTH_LONG).show();
                     refresh.setVisibility(View.VISIBLE);
                     refresh.setOnClickListener(view -> {
                         refresh();

@@ -44,9 +44,9 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
     Ujian ujian;
     Context context;
 
-    ArrayList<String> datasiswa = new ArrayList<String>();
-    ArrayList<String> dataUjian = new ArrayList<String>();
-    ArrayList<Boolean> cekSudahUjian = new ArrayList<Boolean>();
+    ArrayList<String> datasiswa = new ArrayList<>();
+    ArrayList<String> dataUjian = new ArrayList<>();
+    ArrayList<Boolean> cekSudahUjian = new ArrayList<>();
     private boolean activate = true;
 
     public AdapterUjian(Ujian ujian, Context context) {
@@ -124,8 +124,8 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
 
             else {
                 if (holder.et_token.getText().toString().equals(token)) {
-//                    token benar
 
+                    //token benar
                     holder.token.setVisibility(View.INVISIBLE);
 
                     LocalDateTime time = LocalDateTime.now();
@@ -145,16 +145,11 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
                     act.finish();
                 }
                 else {
-//                    token salah
+                    //token salah
                     Toast.makeText(context, "Token Salah !!", Toast.LENGTH_LONG).show();
                 }
             }
         });
-
-//  get local datetime
-//        DateFormat df = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
-//        String date = df.format(Calendar.getInstance().getTime());
-//        holder.tgl.setText(date);
 
     }
 
@@ -188,11 +183,6 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
     }
 
 
-    public void setDataUjian(String cek) {
-        dataUjian.add(cek);
-    }
-
-
     public void cari(){
         for (int i = 0; i < dataUjian.size(); i++) {
             for (int j = 0; j < datasiswa.size() ; j++) {
@@ -208,8 +198,5 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
         this.activate = activate;
         notifyDataSetChanged();
     }
-
-
-
 
 }

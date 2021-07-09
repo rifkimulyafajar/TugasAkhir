@@ -54,7 +54,6 @@ public class UjianFragment extends Fragment {
         refresh = view.findViewById(R.id.btn_refresh);
 
         refresh();
-//        refreshbtnsiswa();
 
         return view;
     }
@@ -74,7 +73,6 @@ public class UjianFragment extends Fragment {
                     if (ujian != null) {
                     refreshbtnsiswa();
                         for (int i = 0; i < ujian.getData().length; i++) {
-//                            adapter = new AdapterUjian(ujian, getContext());
                             recyclerView.setAdapter(adapter);
                         }
                         refresh.setVisibility(View.INVISIBLE);
@@ -115,26 +113,16 @@ public class UjianFragment extends Fragment {
                             String data = hasilUjianSiswa.getData()[i].getId_ujian();
                             adapter.addDataSiswa(data);
                             adapter.cari();
-
                         }
-//                        adapter.getDataSiswa();
-//                        adapter.getDataUjian();
-                        refresh.setVisibility(View.INVISIBLE);
                     }
-                } else {
-                    Toast.makeText(getContext(), "Belum Ada Ujian untuk saat ini", Toast.LENGTH_LONG).show();
-//
                 }
             }
 
             @Override
             public void onFailure(Call<HasilUjianSiswa> call, Throwable t) {
                 Toast.makeText(getActivity(), "" + t, Toast.LENGTH_LONG).show();
-//
             }
-
         });
-
 
     }
 
