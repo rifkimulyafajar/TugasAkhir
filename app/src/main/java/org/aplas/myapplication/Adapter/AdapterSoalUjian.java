@@ -5,11 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import org.aplas.myapplication.Model.SoalUjian;
 import org.aplas.myapplication.R;
@@ -66,8 +69,17 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        String url = "https://smai-ujian.xyz/smai-admin/upload/soal/";
+
         id_ujian= soal.getData()[position].getId_ujian();
         holder.wvsoal.loadData(soal.getData()[position].getSoal(), "text/html", "UTF-8");
+
+        if (soal.getData()[position].getFile_soal() != null) {
+            holder.imgSoal.setVisibility(View.VISIBLE);
+            Picasso.with(context)
+                    .load("" +url +soal.getData()[position].getFile_soal())
+                    .into(holder.imgSoal);
+        }
 
         holder.a.setText(soal.getData()[position].getPilihan_a());
         holder.b.setText(soal.getData()[position].getPilihan_b());
@@ -155,6 +167,8 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
 
         WebView wvsoal;
 
+        ImageView imgSoal;
+
         RadioGroup rg;
         RadioButton a,b,c,d,e;
 
@@ -162,6 +176,8 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
             super(itemView);
 
             wvsoal = itemView.findViewById(R.id.WV_soal);
+            imgSoal = itemView.findViewById(R.id.img_soalUjian);
+
             a = itemView.findViewById(R.id.pil_a);
             b = itemView.findViewById(R.id.pil_b);
             c = itemView.findViewById(R.id.pil_c);

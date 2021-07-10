@@ -49,17 +49,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         editTextUsername = findViewById(R.id.edtTextUsername);
         editTextPassword = findViewById(R.id.edtTextPassword);
-        textLupaPassword = findViewById(R.id.textLupaPassword);
         loginButton = findViewById(R.id.button);
 
-        textLupaPassword.setOnClickListener(this);
         loginButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.textLupaPassword : ;
             case R.id.button : processLogin();
         }
     }

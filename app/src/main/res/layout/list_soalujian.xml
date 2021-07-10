@@ -18,17 +18,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="WebViewLayout" />
+        tools:ignore="WebViewLayout">
+
+    </WebView>
+
+    <ImageView
+        android:id="@+id/img_soalUjian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/WV_soal"
+        app:layout_constraintStart_toStartOf="@+id/WV_soal"
+        app:layout_constraintTop_toBottomOf="@+id/WV_soal"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
 
     <RadioGroup
         android:id="@+id/radioGroup2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:background="#fff"
         app:layout_constraintEnd_toEndOf="@+id/WV_soal"
         app:layout_constraintStart_toStartOf="@+id/WV_soal"
-        app:layout_constraintTop_toBottomOf="@+id/WV_soal">
+        app:layout_constraintTop_toBottomOf="@+id/img_soalUjian">
 
         <RadioButton
             android:id="@+id/pil_a"

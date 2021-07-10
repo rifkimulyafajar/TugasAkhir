@@ -188,7 +188,7 @@ public class SoalUjian extends AppCompatActivity {
                     }
                 }
                 else {
-                    Toast.makeText(SoalUjian.this, "Belum Ada Ujian untuk saat ini", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SoalUjian.this, "Belum Ada Soal Ujian untuk saat ini", Toast.LENGTH_LONG).show();
                     refresh.setVisibility(View.VISIBLE);
                     refresh.setOnClickListener(view -> {
                         refresh();

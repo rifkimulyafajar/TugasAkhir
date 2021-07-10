@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#A2BCE8">
+    android:background="#A2BCE8"
+    android:visibility="visible">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -35,10 +36,11 @@
                         android:id="@+id/txtMapel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
                         android:layout_marginTop="12dp"
                         android:text="mapel"
                         android:textColor="#000"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,16 +53,64 @@
                         android:layout_marginEnd="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/txtMapel" />
+                        app:layout_constraintTop_toBottomOf="@+id/txtMapel">
+
+                    </WebView>
+
+                    <ImageView
+                        android:id="@+id/img_soal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="@+id/wvSoal"
+                        app:layout_constraintStart_toStartOf="@+id/wvSoal"
+                        app:layout_constraintTop_toBottomOf="@+id/wvSoal"
+                        app:srcCompat="@drawable/ic_launcher_foreground" />
 
                     <RadioGroup
                         android:id="@+id/rg_jawaban"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="4dp"
                         app:layout_constraintEnd_toEndOf="@+id/wvSoal"
                         app:layout_constraintStart_toStartOf="@+id/wvSoal"
-                        app:layout_constraintTop_toBottomOf="@+id/wvSoal">
+                        app:layout_constraintTop_toBottomOf="@+id/img_soal">
+
+                        <ImageView
+                            android:id="@+id/img_jwb_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+                        <ImageView
+                            android:id="@+id/img_jwb_c"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+                        <ImageView
+                            android:id="@+id/img_jwb_d"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+                        <ImageView
+                            android:id="@+id/img_jwb_e"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+                        <ImageView
+                            android:id="@+id/img_jwb_a"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:srcCompat="@drawable/ic_launcher_foreground" />
 
                         <RadioButton
                             android:id="@+id/rb_a"

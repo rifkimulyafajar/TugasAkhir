@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import org.aplas.myapplication.Model.BankSoal;
 import org.aplas.myapplication.R;
@@ -40,8 +43,25 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull AdapterBankSoal.ViewHolder holder, int position) {
+        String url = "https://smai-ujian.xyz/smai-admin/upload/soal/";
+
         holder.mapel.setText(bank_soal.getData()[position].getMapel());
         holder.wvSoal.loadData("Soal : " +bank_soal.getData()[position].getSoal(), "text/html", "UTF-8");
+
+        if (bank_soal.getData()[position].getFile_soal() != null) {
+            holder.img_soal.setVisibility(View.VISIBLE);
+            Picasso.with(context)
+                    .load("" +url +bank_soal.getData()[position].getFile_soal())
+                    .into(holder.img_soal);
+        }
+
+        if (bank_soal.getData()[position].getFile_a() != null) {
+            Picasso.with(context)
+                    .load(""+url +bank_soal.getData()[position].getFile_a())
+                    .into(holder.imgA);
+
+        }
+
         holder.a.setText(bank_soal.getData()[position].getPilihan_a());
         holder.b.setText(bank_soal.getData()[position].getPilihan_b());
         holder.c.setText(bank_soal.getData()[position].getPilihan_c());
@@ -117,23 +137,31 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        WebView wvSoal;
-        TextView mapel;
+        WebView wvSoal; TextView mapel;
+        ImageView img_soal, imgA, imgB, imgC, imgD, imgE;
         Button jawab;
-        RadioGroup jawaban;
-        RadioButton a,b,c,d,e;
+        RadioGroup jawaban; RadioButton a,b,c,d,e;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mapel = itemView.findViewById(R.id.txtMapel);
             wvSoal = itemView.findViewById(R.id.wvSoal);
-            jawab = itemView.findViewById(R.id.btn_jawab);
+            img_soal = itemView.findViewById(R.id.img_soal);
+
             jawaban = itemView.findViewById(R.id.rg_jawaban);
             a = itemView.findViewById(R.id.rb_a);
             b = itemView.findViewById(R.id.rb_b);
             c = itemView.findViewById(R.id.rb_c);
             d = itemView.findViewById(R.id.rb_d);
             e = itemView.findViewById(R.id.rb_e);
+
+            jawab = itemView.findViewById(R.id.btn_jawab);
+
+            imgA = itemView.findViewById(R.id.img_jwb_a);
+            imgB = itemView.findViewById(R.id.img_jwb_b);
+            imgC = itemView.findViewById(R.id.img_jwb_c);
+            imgD = itemView.findViewById(R.id.img_jwb_d);
+            imgE = itemView.findViewById(R.id.img_jwb_e);
         }
     }
 }

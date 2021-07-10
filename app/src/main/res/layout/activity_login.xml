@@ -80,32 +80,20 @@
         app:layout_constraintTop_toBottomOf="@+id/textPassword"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <TextView
-        android:id="@+id/textLupaPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Lupa Sandi ?"
-        android:textColor="@color/design_default_color_on_secondary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtTextPassword" />
-
 
     <Button
         android:id="@+id/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@color/design_default_color_secondary"
         android:text="Login"
         android:textStyle="bold"
-        app:layout_constraintWidth_percent="0.85"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textLupaPassword" />
-
+        app:layout_constraintEnd_toEndOf="@+id/edtTextPassword"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edtTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/edtTextPassword"
+        app:layout_constraintWidth_percent="0.85" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
