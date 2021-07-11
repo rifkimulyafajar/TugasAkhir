@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.aplas.myapplication.Model.BankSoal;
 import org.aplas.myapplication.R;
@@ -55,18 +57,55 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
                     .into(holder.img_soal);
         }
 
+        holder.a.setText(bank_soal.getData()[position].getPilihan_a());
         if (bank_soal.getData()[position].getFile_a() != null) {
+            holder.imgA.setVisibility(View.VISIBLE);
             Picasso.with(context)
                     .load(""+url +bank_soal.getData()[position].getFile_a())
                     .into(holder.imgA);
-
+            holder.a.setText(bank_soal.getData()[position].getFile_a());
+            holder.a.setTextColor(Color.parseColor("#00000000"));
         }
 
-        holder.a.setText(bank_soal.getData()[position].getPilihan_a());
         holder.b.setText(bank_soal.getData()[position].getPilihan_b());
+        if (bank_soal.getData()[position].getFile_b() != null) {
+            holder.imgB.setVisibility(View.VISIBLE);
+            Picasso.with(context)
+                    .load(""+url +bank_soal.getData()[position].getFile_b())
+                    .into(holder.imgB);
+            holder.b.setText(bank_soal.getData()[position].getFile_b());
+            holder.b.setTextColor(Color.parseColor("#00000000"));
+        }
+
         holder.c.setText(bank_soal.getData()[position].getPilihan_c());
+        if (bank_soal.getData()[position].getFile_c() != null) {
+            holder.imgC.setVisibility(View.VISIBLE);
+            Picasso.with(context)
+                    .load(""+url +bank_soal.getData()[position].getFile_c())
+                    .into(holder.imgC);
+            holder.c.setText(bank_soal.getData()[position].getFile_c());
+            holder.c.setTextColor(Color.parseColor("#00000000"));
+        }
+
         holder.d.setText(bank_soal.getData()[position].getPilihan_d());
+        if (bank_soal.getData()[position].getFile_d() != null) {
+            holder.imgD.setVisibility(View.VISIBLE);
+            Picasso.with(context)
+                    .load(""+url +bank_soal.getData()[position].getFile_d())
+                    .into(holder.imgD);
+            holder.d.setText(bank_soal.getData()[position].getFile_d());
+            holder.d.setTextColor(Color.parseColor("#00000000"));
+        }
+
         holder.e.setText(bank_soal.getData()[position].getPilihan_e());
+        if (bank_soal.getData()[position].getFile_e() != null) {
+            holder.imgE.setVisibility(View.VISIBLE);
+            Picasso.with(context)
+                    .load(""+url +bank_soal.getData()[position].getFile_e())
+                    .into(holder.imgE);
+            holder.e.setText(bank_soal.getData()[position].getFile_e());
+            holder.e.setTextColor(Color.parseColor("#00000000"));
+        }
 
         String kunci = bank_soal.getData()[position].getKunci();
 

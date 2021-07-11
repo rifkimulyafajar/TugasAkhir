@@ -77,33 +77,13 @@
                         app:layout_constraintStart_toStartOf="@+id/wvSoal"
                         app:layout_constraintTop_toBottomOf="@+id/img_soal">
 
-                        <ImageView
-                            android:id="@+id/img_jwb_b"
+                        <RadioButton
+                            android:id="@+id/rb_a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:visibility="gone"
-                            app:srcCompat="@drawable/ic_launcher_foreground" />
-
-                        <ImageView
-                            android:id="@+id/img_jwb_c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone"
-                            app:srcCompat="@drawable/ic_launcher_foreground" />
-
-                        <ImageView
-                            android:id="@+id/img_jwb_d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone"
-                            app:srcCompat="@drawable/ic_launcher_foreground" />
-
-                        <ImageView
-                            android:id="@+id/img_jwb_e"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone"
-                            app:srcCompat="@drawable/ic_launcher_foreground" />
+                            android:cursorVisible="false"
+                            android:text="RadioButton"
+                            android:visibility="visible" />
 
                         <ImageView
                             android:id="@+id/img_jwb_a"
@@ -113,16 +93,17 @@
                             app:srcCompat="@drawable/ic_launcher_foreground" />
 
                         <RadioButton
-                            android:id="@+id/rb_a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="RadioButton" />
-
-                        <RadioButton
                             android:id="@+id/rb_b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="RadioButton" />
+
+                        <ImageView
+                            android:id="@+id/img_jwb_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:srcCompat="@drawable/ic_launcher_foreground" />
 
                         <RadioButton
                             android:id="@+id/rb_c"
@@ -130,17 +111,38 @@
                             android:layout_height="wrap_content"
                             android:text="RadioButton" />
 
+                        <ImageView
+                            android:id="@+id/img_jwb_c"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:srcCompat="@drawable/ic_launcher_foreground" />
+
                         <RadioButton
                             android:id="@+id/rb_d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="RadioButton" />
 
+                        <ImageView
+                            android:id="@+id/img_jwb_d"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:srcCompat="@drawable/ic_launcher_foreground" />
+
                         <RadioButton
                             android:id="@+id/rb_e"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="RadioButton" />
+
+                        <ImageView
+                            android:id="@+id/img_jwb_e"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:srcCompat="@drawable/ic_launcher_foreground" />
                     </RadioGroup>
 
                     <Button

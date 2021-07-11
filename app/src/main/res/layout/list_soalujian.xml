@@ -49,11 +49,25 @@
             android:layout_height="wrap_content"
             android:text="A" />
 
+        <ImageView
+            android:id="@+id/img_pil_a"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_menu_bank_soal" />
+
         <RadioButton
             android:id="@+id/pil_b"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="B" />
+
+        <ImageView
+            android:id="@+id/img_pil_b"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_menu_bank_soal" />
 
         <RadioButton
             android:id="@+id/pil_c"
@@ -61,17 +75,38 @@
             android:layout_height="wrap_content"
             android:text="C" />
 
+        <ImageView
+            android:id="@+id/img_pil_c"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_menu_bank_soal" />
+
         <RadioButton
             android:id="@+id/pil_d"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="D" />
 
+        <ImageView
+            android:id="@+id/img_pil_d"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_menu_bank_soal" />
+
         <RadioButton
             android:id="@+id/pil_e"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="E" />
+
+        <ImageView
+            android:id="@+id/img_pil_e"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_menu_bank_soal" />
     </RadioGroup>
 
     <View

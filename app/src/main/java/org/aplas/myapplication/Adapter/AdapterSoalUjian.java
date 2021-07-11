@@ -1,6 +1,7 @@
 package org.aplas.myapplication.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,10 +83,54 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
         }
 
         holder.a.setText(soal.getData()[position].getPilihan_a());
+        if (soal.getData()[position].getFile_a() != null) {
+            holder.imgA.setVisibility(View.VISIBLE);
+            Picasso.with(context)
+                    .load(""+url +soal.getData()[position].getFile_a())
+                    .into(holder.imgA);
+            holder.a.setText(soal.getData()[position].getFile_a());
+            holder.a.setTextColor(Color.parseColor("#00000000"));
+        }
+
         holder.b.setText(soal.getData()[position].getPilihan_b());
+        if (soal.getData()[position].getFile_b() != null) {
+            holder.imgB.setVisibility(View.VISIBLE);
+            Picasso.with(context)
+                    .load(""+url +soal.getData()[position].getFile_b())
+                    .into(holder.imgB);
+            holder.b.setText(soal.getData()[position].getFile_b());
+            holder.b.setTextColor(Color.parseColor("#00000000"));
+        }
+
         holder.c.setText(soal.getData()[position].getPilihan_c());
+        if (soal.getData()[position].getFile_c() != null) {
+            holder.imgC.setVisibility(View.VISIBLE);
+            Picasso.with(context)
+                    .load(""+url +soal.getData()[position].getFile_c())
+                    .into(holder.imgC);
+            holder.c.setText(soal.getData()[position].getFile_c());
+            holder.c.setTextColor(Color.parseColor("#00000000"));
+        }
+
         holder.d.setText(soal.getData()[position].getPilihan_d());
+        if (soal.getData()[position].getFile_d() != null) {
+            holder.imgD.setVisibility(View.VISIBLE);
+            Picasso.with(context)
+                    .load(""+url +soal.getData()[position].getFile_d())
+                    .into(holder.imgD);
+            holder.d.setText(soal.getData()[position].getFile_d());
+            holder.d.setTextColor(Color.parseColor("#00000000"));
+        }
+
         holder.e.setText(soal.getData()[position].getPilihan_e());
+        if (soal.getData()[position].getFile_e() != null) {
+            holder.imgE.setVisibility(View.VISIBLE);
+            Picasso.with(context)
+                    .load(""+url +soal.getData()[position].getFile_e())
+                    .into(holder.imgE);
+            holder.e.setText(soal.getData()[position].getFile_e());
+            holder.e.setTextColor(Color.parseColor("#00000000"));
+        }
 
         String kunci = soal.getData()[position].getKunci();
         int bobot = Integer.parseInt(soal.getData()[position].getNilai());
@@ -167,7 +212,7 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
 
         WebView wvsoal;
 
-        ImageView imgSoal;
+        ImageView imgSoal, imgA, imgB, imgC, imgD, imgE;
 
         RadioGroup rg;
         RadioButton a,b,c,d,e;
@@ -184,6 +229,12 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
             d = itemView.findViewById(R.id.pil_d);
             e = itemView.findViewById(R.id.pil_e);
             rg = itemView.findViewById(R.id.radioGroup2);
+
+            imgA = itemView.findViewById(R.id.img_pil_a);
+            imgB = itemView.findViewById(R.id.img_pil_b);
+            imgC = itemView.findViewById(R.id.img_pil_c);
+            imgD = itemView.findViewById(R.id.img_pil_d);
+            imgE = itemView.findViewById(R.id.img_pil_e);
 
         }
     }
