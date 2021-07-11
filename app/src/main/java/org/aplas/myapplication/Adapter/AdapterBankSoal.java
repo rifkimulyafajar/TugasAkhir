@@ -57,8 +57,11 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
                     .into(holder.img_soal);
         }
 
-        holder.a.setText(bank_soal.getData()[position].getPilihan_a());
-        if (bank_soal.getData()[position].getFile_a() != null) {
+
+        if (bank_soal.getData()[position].getFile_a().equals(null) ||
+            bank_soal.getData()[position].getFile_a().equals("")) {
+            holder.a.setText(bank_soal.getData()[position].getPilihan_a());
+        } else {
             holder.imgA.setVisibility(View.VISIBLE);
             Picasso.with(context)
                     .load(""+url +bank_soal.getData()[position].getFile_a())
@@ -67,8 +70,10 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
             holder.a.setTextColor(Color.parseColor("#00000000"));
         }
 
-        holder.b.setText(bank_soal.getData()[position].getPilihan_b());
-        if (bank_soal.getData()[position].getFile_b() != null) {
+        if (bank_soal.getData()[position].getFile_b().equals(null) ||
+            bank_soal.getData()[position].getFile_b().equals("")) {
+            holder.b.setText(bank_soal.getData()[position].getPilihan_b());
+        } else {
             holder.imgB.setVisibility(View.VISIBLE);
             Picasso.with(context)
                     .load(""+url +bank_soal.getData()[position].getFile_b())
@@ -77,8 +82,10 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
             holder.b.setTextColor(Color.parseColor("#00000000"));
         }
 
-        holder.c.setText(bank_soal.getData()[position].getPilihan_c());
-        if (bank_soal.getData()[position].getFile_c() != null) {
+        if (bank_soal.getData()[position].getFile_c().equals(null) ||
+            bank_soal.getData()[position].getFile_c().equals("")) {
+            holder.c.setText(bank_soal.getData()[position].getPilihan_c());
+        } else {
             holder.imgC.setVisibility(View.VISIBLE);
             Picasso.with(context)
                     .load(""+url +bank_soal.getData()[position].getFile_c())
@@ -87,8 +94,10 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
             holder.c.setTextColor(Color.parseColor("#00000000"));
         }
 
-        holder.d.setText(bank_soal.getData()[position].getPilihan_d());
-        if (bank_soal.getData()[position].getFile_d() != null) {
+        if (bank_soal.getData()[position].getFile_d().equals(null) ||
+            bank_soal.getData()[position].getFile_d().equals("")) {
+            holder.d.setText(bank_soal.getData()[position].getPilihan_d());
+        } else {
             holder.imgD.setVisibility(View.VISIBLE);
             Picasso.with(context)
                     .load(""+url +bank_soal.getData()[position].getFile_d())
@@ -97,8 +106,10 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
             holder.d.setTextColor(Color.parseColor("#00000000"));
         }
 
-        holder.e.setText(bank_soal.getData()[position].getPilihan_e());
-        if (bank_soal.getData()[position].getFile_e() != null) {
+        if (bank_soal.getData()[position].getFile_e().equals(null) ||
+            bank_soal.getData()[position].getFile_e().equals("")) {
+            holder.e.setText(bank_soal.getData()[position].getPilihan_e());
+        } else {
             holder.imgE.setVisibility(View.VISIBLE);
             Picasso.with(context)
                     .load(""+url +bank_soal.getData()[position].getFile_e())
@@ -106,6 +117,8 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
             holder.e.setText(bank_soal.getData()[position].getFile_e());
             holder.e.setTextColor(Color.parseColor("#00000000"));
         }
+
+
 
         String kunci = bank_soal.getData()[position].getKunci();
 

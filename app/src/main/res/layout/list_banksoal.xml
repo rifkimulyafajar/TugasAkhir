@@ -81,9 +81,7 @@
                             android:id="@+id/rb_a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:cursorVisible="false"
-                            android:text="RadioButton"
-                            android:visibility="visible" />
+                            android:text="RadioButton" />
 
                         <ImageView
                             android:id="@+id/img_jwb_a"
