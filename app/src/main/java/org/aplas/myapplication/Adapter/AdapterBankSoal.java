@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import org.aplas.myapplication.Model.BankSoal;
 import org.aplas.myapplication.R;
@@ -39,8 +37,7 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
     @Override
     public AdapterBankSoal.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_banksoal, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override
@@ -58,8 +55,7 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
         }
 
 
-        if (bank_soal.getData()[position].getFile_a().equals(null) ||
-            bank_soal.getData()[position].getFile_a().equals("")) {
+        if (bank_soal.getData()[position].getFile_a() == null || bank_soal.getData()[position].getFile_a().equals("")) {
             holder.a.setText(bank_soal.getData()[position].getPilihan_a());
         } else {
             holder.imgA.setVisibility(View.VISIBLE);
@@ -70,8 +66,7 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
             holder.a.setTextColor(Color.parseColor("#00000000"));
         }
 
-        if (bank_soal.getData()[position].getFile_b().equals(null) ||
-            bank_soal.getData()[position].getFile_b().equals("")) {
+        if (bank_soal.getData()[position].getFile_b() == null || bank_soal.getData()[position].getFile_b().equals("")) {
             holder.b.setText(bank_soal.getData()[position].getPilihan_b());
         } else {
             holder.imgB.setVisibility(View.VISIBLE);
@@ -82,8 +77,7 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
             holder.b.setTextColor(Color.parseColor("#00000000"));
         }
 
-        if (bank_soal.getData()[position].getFile_c().equals(null) ||
-            bank_soal.getData()[position].getFile_c().equals("")) {
+        if (bank_soal.getData()[position].getFile_c() == null || bank_soal.getData()[position].getFile_c().equals("")) {
             holder.c.setText(bank_soal.getData()[position].getPilihan_c());
         } else {
             holder.imgC.setVisibility(View.VISIBLE);
@@ -94,8 +88,7 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
             holder.c.setTextColor(Color.parseColor("#00000000"));
         }
 
-        if (bank_soal.getData()[position].getFile_d().equals(null) ||
-            bank_soal.getData()[position].getFile_d().equals("")) {
+        if (bank_soal.getData()[position].getFile_d() == null || bank_soal.getData()[position].getFile_d().equals("")) {
             holder.d.setText(bank_soal.getData()[position].getPilihan_d());
         } else {
             holder.imgD.setVisibility(View.VISIBLE);
@@ -106,8 +99,7 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
             holder.d.setTextColor(Color.parseColor("#00000000"));
         }
 
-        if (bank_soal.getData()[position].getFile_e().equals(null) ||
-            bank_soal.getData()[position].getFile_e().equals("")) {
+        if (bank_soal.getData()[position].getFile_e() == null || bank_soal.getData()[position].getFile_e().equals("")) {
             holder.e.setText(bank_soal.getData()[position].getPilihan_e());
         } else {
             holder.imgE.setVisibility(View.VISIBLE);
@@ -117,7 +109,6 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
             holder.e.setText(bank_soal.getData()[position].getFile_e());
             holder.e.setTextColor(Color.parseColor("#00000000"));
         }
-
 
 
         String kunci = bank_soal.getData()[position].getKunci();
@@ -188,7 +179,7 @@ public class AdapterBankSoal extends RecyclerView.Adapter<AdapterBankSoal.ViewHo
         return bank_soal.getData().length;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         WebView wvSoal; TextView mapel;
         ImageView img_soal, imgA, imgB, imgC, imgD, imgE;
         Button jawab;

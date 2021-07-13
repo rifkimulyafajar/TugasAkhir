@@ -82,8 +82,9 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
                     .into(holder.imgSoal);
         }
 
-        holder.a.setText(soal.getData()[position].getPilihan_a());
-        if (soal.getData()[position].getFile_a() != null) {
+        if (soal.getData()[position].getFile_a() == null || soal.getData()[position].getFile_a().equals("")) {
+            holder.a.setText(soal.getData()[position].getPilihan_a());
+        } else {
             holder.imgA.setVisibility(View.VISIBLE);
             Picasso.with(context)
                     .load(""+url +soal.getData()[position].getFile_a())
@@ -92,8 +93,9 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
             holder.a.setTextColor(Color.parseColor("#00000000"));
         }
 
-        holder.b.setText(soal.getData()[position].getPilihan_b());
-        if (soal.getData()[position].getFile_b() != null) {
+        if (soal.getData()[position].getFile_b() == null || soal.getData()[position].getFile_b().equals("")) {
+            holder.b.setText(soal.getData()[position].getPilihan_b());
+        } else {
             holder.imgB.setVisibility(View.VISIBLE);
             Picasso.with(context)
                     .load(""+url +soal.getData()[position].getFile_b())
@@ -102,8 +104,9 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
             holder.b.setTextColor(Color.parseColor("#00000000"));
         }
 
-        holder.c.setText(soal.getData()[position].getPilihan_c());
-        if (soal.getData()[position].getFile_c() != null) {
+        if (soal.getData()[position].getFile_c() == null || soal.getData()[position].getFile_c().equals("")) {
+            holder.c.setText(soal.getData()[position].getPilihan_c());
+        } else {
             holder.imgC.setVisibility(View.VISIBLE);
             Picasso.with(context)
                     .load(""+url +soal.getData()[position].getFile_c())
@@ -112,8 +115,9 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
             holder.c.setTextColor(Color.parseColor("#00000000"));
         }
 
-        holder.d.setText(soal.getData()[position].getPilihan_d());
-        if (soal.getData()[position].getFile_d() != null) {
+        if (soal.getData()[position].getFile_d() == null || soal.getData()[position].getFile_d().equals("")) {
+            holder.d.setText(soal.getData()[position].getPilihan_d());
+        } else {
             holder.imgD.setVisibility(View.VISIBLE);
             Picasso.with(context)
                     .load(""+url +soal.getData()[position].getFile_d())
@@ -122,8 +126,9 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
             holder.d.setTextColor(Color.parseColor("#00000000"));
         }
 
-        holder.e.setText(soal.getData()[position].getPilihan_e());
-        if (soal.getData()[position].getFile_e() != null) {
+        if (soal.getData()[position].getFile_e() == null || soal.getData()[position].getFile_e().equals("")) {
+            holder.e.setText(soal.getData()[position].getPilihan_e());
+        } else {
             holder.imgE.setVisibility(View.VISIBLE);
             Picasso.with(context)
                     .load(""+url +soal.getData()[position].getFile_e())
