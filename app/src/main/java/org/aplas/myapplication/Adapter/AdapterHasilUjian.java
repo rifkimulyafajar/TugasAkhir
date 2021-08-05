@@ -39,21 +39,12 @@ public class AdapterHasilUjian extends RecyclerView.Adapter<AdapterHasilUjian.Vi
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull AdapterHasilUjian.ViewHolder holder, int position) {
-        String sid = hasilUjian.getData()[position].getId_ujian();
-        String sjudul = hasilUjian.getData()[position].getJudul_ujian();
-        String sguru = hasilUjian.getData()[position].getNama();
-        String smapel = hasilUjian.getData()[position].getMapel();
 
-        holder.judul.setText(sjudul);
-        holder.guru.setText(sguru);
-        holder.mapel.setText(smapel);
+        holder.judul.setText(hasilUjian.getData()[position].getJudul_ujian());
+        holder.guru.setText(hasilUjian.getData()[position].getNama());
+        holder.mapel.setText(hasilUjian.getData()[position].getMapel());
+        holder.nilai.setText("Nilai  =  " + hasilUjian.getData()[position].getNilai());
 
-        holder.detail.setOnClickListener(view -> {
-            Intent i = new Intent(context, DetailHasilUjianActivity.class);
-            i.putExtra("id", sid); i.putExtra("judul", sjudul);
-            i.putExtra("guru", sguru); i.putExtra("mapel", smapel);
-            context.startActivity(i);
-        });
     }
 
     @Override
@@ -63,8 +54,7 @@ public class AdapterHasilUjian extends RecyclerView.Adapter<AdapterHasilUjian.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView judul, guru, mapel;
-        Button detail;
+        TextView judul, guru, mapel, nilai;
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -72,8 +62,7 @@ public class AdapterHasilUjian extends RecyclerView.Adapter<AdapterHasilUjian.Vi
             judul = itemView.findViewById(R.id.TV_judul);
             guru = itemView.findViewById(R.id.TV_namaguru);
             mapel = itemView.findViewById(R.id.TV_mapel);
-
-            detail = itemView.findViewById(R.id.btn_detail);
+            nilai = itemView.findViewById(R.id.TV_nilai);
         }
     }
 }

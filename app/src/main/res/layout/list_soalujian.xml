@@ -47,7 +47,9 @@
             android:id="@+id/pil_a"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="A" />
+            android:text="A"
+            android:textColor="#000"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/img_pil_a"
@@ -60,7 +62,9 @@
             android:id="@+id/pil_b"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="B" />
+            android:text="B"
+            android:textColor="#000"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/img_pil_b"
@@ -73,7 +77,9 @@
             android:id="@+id/pil_c"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="C" />
+            android:text="C"
+            android:textColor="#000"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/img_pil_c"
@@ -86,7 +92,9 @@
             android:id="@+id/pil_d"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="D" />
+            android:text="D"
+            android:textColor="#000"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/img_pil_d"
@@ -99,7 +107,9 @@
             android:id="@+id/pil_e"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="E" />
+            android:text="E"
+            android:textColor="#000"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/img_pil_e"

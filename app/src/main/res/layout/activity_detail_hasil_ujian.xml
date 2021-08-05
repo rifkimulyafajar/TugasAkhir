@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.2" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline13"
@@ -34,6 +34,7 @@
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="Nomor"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline12"
         app:layout_constraintStart_toStartOf="@+id/divider7"
         app:layout_constraintTop_toBottomOf="@+id/divider7" />
@@ -47,6 +48,7 @@
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:text="Nama Siswa"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline13"
         app:layout_constraintStart_toStartOf="@+id/guideline12"
         app:layout_constraintTop_toBottomOf="@+id/divider7" />
@@ -58,9 +60,20 @@
         android:layout_marginStart="8dp"
         android:gravity="center"
         android:text="Nilai"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/divider7"
         app:layout_constraintStart_toStartOf="@+id/guideline13"
         app:layout_constraintTop_toTopOf="@+id/textView16" />
+
+    <View
+        android:id="@+id/divider12"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="8dp"
+        android:background="#000"
+        app:layout_constraintEnd_toEndOf="@+id/tv_MAPEL"
+        app:layout_constraintStart_toStartOf="@+id/tv_GURU"
+        app:layout_constraintTop_toBottomOf="@+id/tv_JUDUL" />
 
     <TextView
         android:id="@+id/tv_JUDUL"
@@ -68,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Judul Ujian"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,28 +94,31 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
+        android:gravity="center"
         android:text="Nama Guru"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_JUDUL" />
+        app:layout_constraintTop_toBottomOf="@+id/divider12" />
 
     <TextView
         android:id="@+id/tv_MAPEL"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:gravity="center"
         android:text="Mata Pelajaran"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/tv_JUDUL" />
+        app:layout_constraintTop_toTopOf="@+id/tv_GURU" />
 
     <View
         android:id="@+id/divider7"
         android:layout_width="0dp"
         android:layout_height="4dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="#000"
         app:layout_constraintEnd_toEndOf="@+id/tv_MAPEL"
         app:layout_constraintStart_toStartOf="@+id/tv_GURU"

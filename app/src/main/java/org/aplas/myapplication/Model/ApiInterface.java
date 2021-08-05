@@ -1,14 +1,18 @@
 package org.aplas.myapplication.Model;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
+
     @FormUrlEncoded
     @POST("Api/Siswa/login")
     Call<LoginResponse> login(@Field("username") String username,
@@ -31,6 +35,11 @@ public interface ApiInterface {
                            @Query("id_jurusan") String id_jurusan);
 
 
+    @GET("Api/Siswa/bankSoal")
+    Call<List<DataBankSoal>> getDataSoal(@Query("id_kelas") String id_kelas,
+                                         @Query("id_jurusan") String id_jurusan);
+
+
     @GET("Api/Siswa/ujian")
     Call<Ujian> getUjian(@Query("id_kelas") String id_kelas,
                          @Query("id_jurusan") String id_jurusan);
@@ -39,6 +48,7 @@ public interface ApiInterface {
     @GET("Api/Siswa/soalujian")
     Call<SoalUjian> getSoalUjian(@Query("id_ujian") String id_ujian,
                                  @Query("jenis") String jenis);
+
 
     @FormUrlEncoded
     @POST("Api/Siswa/ujian")
@@ -51,8 +61,10 @@ public interface ApiInterface {
     @GET("Api/Siswa/hasil_ujian")
     Call<HasilUjian> getHasilUjian(@Query("id_siswa") String id_siswa);
 
+
     @GET("Api/Siswa/detail_hasil_ujian")
     Call<DetailHasilUjian> getDetailHasilUjian(@Query("id_ujian") String id_ujian);
+
 
     @GET("Api/Siswa/cek_siswa")
     Call<HasilUjianSiswa> getHasilUjianSiswa(@Query("id_siswa") String id_siswa);

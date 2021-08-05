@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -48,7 +49,6 @@ public class SoalUjian extends AppCompatActivity {
     Button selesai, refresh;
 
     long diff, diffMinutes, diffHours;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +109,7 @@ public class SoalUjian extends AppCompatActivity {
             public void onFinish() {
                 durasi.setText("done!");
 
-                Toast.makeText(SoalUjian.this, "Selesai", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SoalUjian.this, "Waktu Selesai !!", Toast.LENGTH_SHORT).show();
 
                 String IdUjian = adapter.getId_ujian();
                 int nilai = adapter.getNilai();
@@ -126,7 +126,7 @@ public class SoalUjian extends AppCompatActivity {
         //btn selesai mengerjakan
         selesai.setOnClickListener(view -> {
 
-            Toast.makeText(this, "Selesai", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Ujian Telah Dikerjakan", Toast.LENGTH_SHORT).show();
 
             String IdUjian = adapter.getId_ujian();
             int nilai = adapter.getNilai();
@@ -150,6 +150,7 @@ public class SoalUjian extends AppCompatActivity {
     }
 
     private void sendData(String idUjian, String idSiswa, int jmlbenar, int nilai) {
+        final ProgressDialog loading = ProgressDialog.show(this,"Proses","Tunggu Sebentar...",false,false);
 
         Call<org.aplas.myapplication.Model.SoalUjian> call = apiInterface.sendSoalUjian(idUjian, idSiswa, String.valueOf(jmlbenar), String.valueOf(nilai));
         call.enqueue(new Callback<org.aplas.myapplication.Model.SoalUjian>() {
@@ -157,17 +158,19 @@ public class SoalUjian extends AppCompatActivity {
             @Override
             public void onResponse(Call<org.aplas.myapplication.Model.SoalUjian> call, Response<org.aplas.myapplication.Model.SoalUjian> response) {
                 if (response.isSuccessful()){
-                    Toast.makeText(context, "send success", Toast.LENGTH_SHORT).show();
+                    loading.dismiss();
+                    Toast.makeText(context, "Ujian Telah Dikerjakan", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<org.aplas.myapplication.Model.SoalUjian> call, Throwable t) {
+                loading.dismiss();
                 Toast.makeText(context, "" +t, Toast.LENGTH_LONG).show();
             }
 
-            });
-        }
+        });
+    }
 
 
     private void refresh() {

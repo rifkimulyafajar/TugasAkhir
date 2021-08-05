@@ -2,6 +2,7 @@ package org.aplas.myapplication.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -70,6 +71,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void update(View view) {
+        final ProgressDialog loading = ProgressDialog.show(this,"Proses","Tunggu Sebentar...",false,false);
 
         String password;
 
@@ -92,7 +94,8 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<UpdateResponse> call, Response<UpdateResponse> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(ProfileActivity.this, "" +response.body().getMessage(), Toast.LENGTH_LONG).show();
+                    loading.dismiss();
+                    Toast.makeText(ProfileActivity.this, "Update Berhasil !!", Toast.LENGTH_LONG).show();
                     sharedPreferences = getSharedPreferences(SHARE, MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString(USERNAME, etuser);
@@ -102,12 +105,14 @@ public class ProfileActivity extends AppCompatActivity {
                     startActivity(i);
 
                 } else {
+                    loading.dismiss();
                     Toast.makeText(ProfileActivity.this, "Update Gagal !!", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<UpdateResponse> call, Throwable t) {
+                loading.dismiss();
                 Toast.makeText(ProfileActivity.this, ""+t, Toast.LENGTH_LONG).show();
             }
         });

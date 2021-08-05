@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -19,10 +20,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Judul Ujian"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider13"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="8dp"
+        android:background="#000"
+        app:layout_constraintEnd_toEndOf="@+id/TV_mapel"
+        app:layout_constraintStart_toStartOf="@+id/TV_namaguru"
+        app:layout_constraintTop_toBottomOf="@+id/TV_judul" />
 
     <TextView
         android:id="@+id/TV_namaguru"
@@ -31,42 +42,60 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
+        android:gravity="center"
         android:text="Nama Guru"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TV_judul" />
+        app:layout_constraintTop_toBottomOf="@+id/divider13" />
 
     <TextView
         android:id="@+id/TV_mapel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:gravity="center"
         android:text="Mata Pelajaran"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/TV_judul" />
+        app:layout_constraintTop_toTopOf="@+id/TV_namaguru" />
 
     <Button
         android:id="@+id/btn_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="detail"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/TV_mapel"
         app:layout_constraintStart_toStartOf="@+id/TV_namaguru"
-        app:layout_constraintTop_toBottomOf="@+id/TV_mapel" />
+        app:layout_constraintTop_toBottomOf="@+id/TV_nilai" />
 
     <View
         android:id="@+id/divider5"
         android:layout_width="0dp"
         android:layout_height="4dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
         android:background="#000"
+        app:layout_constraintEnd_toEndOf="@+id/TV_mapel"
+        app:layout_constraintStart_toStartOf="@+id/TV_namaguru"
+        app:layout_constraintTop_toBottomOf="@+id/TV_namaguru" />
+
+    <TextView
+        android:id="@+id/TV_nilai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Nilai"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/TV_mapel"
         app:layout_constraintStart_toStartOf="@+id/TV_namaguru"
-        app:layout_constraintTop_toBottomOf="@+id/btn_detail" />
+        app:layout_constraintTop_toBottomOf="@+id/divider5" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

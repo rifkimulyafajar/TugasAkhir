@@ -61,6 +61,44 @@ public class DataBankSoal {
 
     private String nilai;
 
+    public DataBankSoal(String pilihan_a, String pilihan_c, String pilihan_b, String pilihan_e,
+                        String pilihan_d, String id_mapel, String id_jurusan, String password,
+                        String nip, String file_a, String file_b, String kelas, String id_kelas,
+                        String file_soal, String id_kategori, String level, String id_soal,
+                        String file_c, String file_d, String file_e, String jurusan, String id_guru,
+                        String mapel, String kunci, String soal, String nama, String tanggal,
+                        String status, String username, String nilai) {
+        this.pilihan_a = pilihan_a;
+        this.pilihan_c = pilihan_c;
+        this.pilihan_b = pilihan_b;
+        this.pilihan_e = pilihan_e;
+        this.pilihan_d = pilihan_d;
+        this.id_mapel = id_mapel;
+        this.id_jurusan = id_jurusan;
+        this.password = password;
+        this.nip = nip;
+        this.file_a = file_a;
+        this.file_b = file_b;
+        this.kelas = kelas;
+        this.id_kelas = id_kelas;
+        this.file_soal = file_soal;
+        this.id_kategori = id_kategori;
+        this.level = level;
+        this.id_soal = id_soal;
+        this.file_c = file_c;
+        this.file_d = file_d;
+        this.file_e = file_e;
+        this.jurusan = jurusan;
+        this.id_guru = id_guru;
+        this.mapel = mapel;
+        this.kunci = kunci;
+        this.soal = soal;
+        this.nama = nama;
+        this.tanggal = tanggal;
+        this.status = status;
+        this.username = username;
+        this.nilai = nilai;
+    }
 
     public String getPilihan_a ()
     {

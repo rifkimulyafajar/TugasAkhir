@@ -43,16 +43,17 @@ public class AdapterMateri extends RecyclerView.Adapter<AdapterMateri.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull AdapterMateri.ViewHolder holder, int position) {
 
-        holder.guru.setText("Nama Guru : " + materiList.getData()[position].getNama());
-        holder.mapel.setText("Mata Pelajaran : " + materiList.getData()[position].getMapel());
+        holder.guru.setText(materiList.getData()[position].getNama());
+        holder.mapel.setText(materiList.getData()[position].getMapel());
         holder.kelas.setText("Kelas : " + materiList.getData()[position].getKelas());
         holder.jurusan.setText("Jurusan : " + materiList.getData()[position].getJurusan());
 
-        holder.file1.setText("File 1 : " + materiList.getData()[position].getFile1());
-        String url1 = "https://ujian-smai.000webhostapp.com/upload/materi/" + materiList.getData()[position].getFile1();
-        holder.file1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        if (materiList.getData()[position].getFile1() == null || materiList.getData()[position].getFile1().equals("")) {
+            holder.file1.setVisibility(View.GONE);
+        } else {
+            holder.file1.setText(materiList.getData()[position].getFile1());
+            String url1 = "https://smai-ujian.xyz/smai-admin/upload/materi/" + materiList.getData()[position].getFile1();
+            holder.file1.setOnClickListener(view -> {
                 DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url1));
                 String title = URLUtil.guessFileName(url1, null, null);
                 request.setTitle(title);
@@ -66,14 +67,15 @@ public class AdapterMateri extends RecyclerView.Adapter<AdapterMateri.ViewHolder
                 downloadManager.enqueue(request);
 
                 Toast.makeText(context, "Download Started", Toast.LENGTH_LONG).show();
-            }
-        });
+            });
+        }
 
-        holder.file2.setText("File 2 : " + materiList.getData()[position].getFile2());
-        String url2 = "https://ujian-smai.000webhostapp.com/upload/materi/" + materiList.getData()[position].getFile2();
-        holder.file2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        if (materiList.getData()[position].getFile2() == null || materiList.getData()[position].getFile2().equals("")) {
+            holder.file2.setVisibility(View.GONE);
+        } else {
+            holder.file2.setText(materiList.getData()[position].getFile2());
+            String url2 = "https://ujian-smai.000webhostapp.com/upload/materi/" + materiList.getData()[position].getFile2();
+            holder.file2.setOnClickListener(view -> {
                 DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url2));
                 String title = URLUtil.guessFileName(url2, null, null);
                 request.setTitle(title);
@@ -87,14 +89,15 @@ public class AdapterMateri extends RecyclerView.Adapter<AdapterMateri.ViewHolder
                 downloadManager.enqueue(request);
 
                 Toast.makeText(context, "Download Started", Toast.LENGTH_LONG).show();
-            }
-        });
+            });
+        }
 
-        holder.file3.setText("File 3 : " + materiList.getData()[position].getFile3());
-        String url3 = "https://ujian-smai.000webhostapp.com/upload/materi/" + materiList.getData()[position].getFile3();
-        holder.file3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        if (materiList.getData()[position].getFile3() == null || materiList.getData()[position].getFile3().equals("")) {
+            holder.file3.setVisibility(View.GONE);
+        } else {
+            holder.file3.setText(materiList.getData()[position].getFile3());
+            String url3 = "https://ujian-smai.000webhostapp.com/upload/materi/" + materiList.getData()[position].getFile3();
+            holder.file3.setOnClickListener(view -> {
                 DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url3));
                 String title = URLUtil.guessFileName(url3, null, null);
                 request.setTitle(title);
@@ -108,8 +111,9 @@ public class AdapterMateri extends RecyclerView.Adapter<AdapterMateri.ViewHolder
                 downloadManager.enqueue(request);
 
                 Toast.makeText(context, "Download Started", Toast.LENGTH_LONG).show();
-            }
-        });
+            });
+        }
+
     }
 
     @Override

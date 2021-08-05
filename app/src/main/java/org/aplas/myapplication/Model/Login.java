@@ -2,12 +2,15 @@ package org.aplas.myapplication.Model;
 
 public class Login {
 
-    public Login(String nis, String nama, String username, String password) {
+    public Login(String token, String nis, String nama, String username, String password) {
+        this.token = token;
         this.nis = nis;
         this.nama = nama;
         this.username = username;
         this.password = password;
     }
+
+    private String token;
 
     private String password;
 
@@ -26,6 +29,10 @@ public class Login {
     private String id_siswa;
 
     private String username;
+
+    public String getToken() {
+        return token;
+    }
 
     public String getPassword ()
     {

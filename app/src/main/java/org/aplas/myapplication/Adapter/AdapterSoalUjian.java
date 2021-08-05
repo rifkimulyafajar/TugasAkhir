@@ -1,5 +1,6 @@
 package org.aplas.myapplication.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -27,6 +28,8 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
 
     ArrayList<Integer> hasil = new ArrayList<>();
 
+    int total_nilai = 100;
+    int banyak_soal = 0;
     int nilai;
     int jml_benar;
     String id_ujian;
@@ -42,12 +45,12 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
 
     private void calculate() {
         for (int i = 0; i < hasil.size(); i++) {
-            nilai+=hasil.get(i);
-            if (hasil.get(i) != 0){
+            banyak_soal++;
+            if (hasil.get(i) != 0) {
                 jml_benar++;
             }
-
         }
+        nilai = jml_benar * (total_nilai / banyak_soal); //hasil.get(i);
     }
 
     public int getJml_benar() {
@@ -69,7 +72,7 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         String url = "https://smai-ujian.xyz/smai-admin/upload/soal/";
 
         id_ujian= soal.getData()[position].getId_ujian();
@@ -138,7 +141,7 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
         }
 
         String kunci = soal.getData()[position].getKunci();
-        int bobot = Integer.parseInt(soal.getData()[position].getNilai());
+//        int bobot = Integer.parseInt(soal.getData()[position].getNilai());
 
         hasil.add(0);
 
@@ -152,7 +155,7 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
                     case R.id.pil_a:
                         if (checkTrue(holder.a.getText(), kunci)){
                             tmp=true;
-                            hasil.set(position,bobot);
+                            hasil.set(position,1);
                         }
                         else{
                             hasil.set(position,0);
@@ -161,7 +164,7 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
                         break;
                     case R.id.pil_b:
                         if (checkTrue(holder.b.getText(), kunci)){
-                            hasil.set(position,bobot);
+                            hasil.set(position,1);
                         }
                         else{
                             hasil.set(position,0);
@@ -169,7 +172,7 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
                         break;
                     case R.id.pil_c:
                         if (checkTrue(holder.c.getText(), kunci)){
-                            hasil.set(position,bobot);
+                            hasil.set(position,1);
                         }
                         else{
                             hasil.set(position,0);
@@ -177,7 +180,7 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
                         break;
                     case R.id.pil_d:
                         if (checkTrue(holder.d.getText(), kunci)){
-                            hasil.set(position,bobot);
+                            hasil.set(position,1);
                         }
                         else{
                             hasil.set(position,0);
@@ -185,7 +188,7 @@ public class AdapterSoalUjian extends RecyclerView.Adapter<AdapterSoalUjian.View
                         break;
                     case R.id.pil_e:
                         if (checkTrue(holder.e.getText(), kunci)){
-                            hasil.set(position,bobot);
+                            hasil.set(position,1);
                         }
                         else{
                             hasil.set(position,0);

@@ -2,6 +2,7 @@ package org.aplas.myapplication.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -72,11 +73,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             username = editTextUsername.getText().toString();
             password = editTextPassword.getText().toString();
             login(username, password);
-
         }
     }
 
     private void login(String username, String password) {
+        final ProgressDialog loading = ProgressDialog.show(this,"Proses","Tunggu Sebentar...",false,false);
+
         ApiInterface apiInterface = ApiClient.getService();
         Call<LoginResponse> call = apiInterface.login(username, password);
         call.enqueue(new Callback<LoginResponse>() {
@@ -84,6 +86,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
                 if (response.isSuccessful()) {
+                    loading.dismiss();
                     LoginResponse loginResponse = response.body();
                     id = loginResponse.getData()[0].getId_siswa();
                     nis = loginResponse.getData()[0].getNis();
@@ -108,18 +111,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     editor.putString(JURUSAN, jrs);
                     editor.apply();
 
-                    Toast.makeText(LoginActivity.this, "Login Berhasil! " +nama, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Login Berhasil !! " +nama, Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(i);
                     finish();
                 }
                 else {
-                    Toast.makeText(LoginActivity.this, "Login Gagal", Toast.LENGTH_SHORT).show();
+                    loading.dismiss();
+                    Toast.makeText(LoginActivity.this, "Login Gagal !!", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
+                loading.dismiss();
                 Toast.makeText(LoginActivity.this, "" +t, Toast.LENGTH_SHORT).show();
             }
         });

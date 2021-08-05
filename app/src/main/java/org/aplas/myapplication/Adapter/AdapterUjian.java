@@ -3,9 +3,7 @@ package org.aplas.myapplication.Adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +14,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.aplas.myapplication.Model.ApiInterface;
-import org.aplas.myapplication.Model.HasilUjianSiswa;
 import org.aplas.myapplication.Model.Ujian;
 import org.aplas.myapplication.R;
 import org.aplas.myapplication.ui.ui.ujian.SoalUjian;
@@ -33,12 +30,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import static android.content.Context.MODE_PRIVATE;
-
 public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> {
 
     Ujian ujian;
@@ -47,7 +38,7 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
     ArrayList<String> datasiswa = new ArrayList<>();
     ArrayList<String> dataUjian = new ArrayList<>();
     ArrayList<Boolean> cekSudahUjian = new ArrayList<>();
-    private boolean activate = true;
+//    private boolean activate = true;
 
     public AdapterUjian(Ujian ujian, Context context) {
         this.ujian = ujian;
@@ -93,6 +84,10 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
         dataUjian.add(id_ujian);
         cekSudahUjian.add(false);
 
+//        if (cekSudahUjian.get(position)) {
+//            holder.token.setVisibility(View.INVISIBLE);
+//            holder.ujian_item.removeAllViews();
+//        }
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -101,14 +96,22 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
             Date date2 = df.parse(ujian.getData()[position].getWaktu_selesai());
             int cekawal = date1.compareTo(Calendar.getInstance().getTime());
             int cekakhir = date2.compareTo(Calendar.getInstance().getTime());
-            if (cekawal>0){
+
+            if (!cekSudahUjian.get(position)){
+//                holder.token.setVisibility(View.VISIBLE);
+
+                if (cekawal>0){
+                    holder.token.setVisibility(View.INVISIBLE);
+                }else if(cekakhir<0){
+                    holder.token.setVisibility(View.INVISIBLE);
+                } else {
+                    holder.token.setVisibility(View.VISIBLE);
+                }
+
+            }else  {
                 holder.token.setVisibility(View.INVISIBLE);
-            }else if(cekakhir<0){
-                holder.token.setVisibility(View.INVISIBLE);
-            }else if (!cekSudahUjian.get(position)){
-                holder.token.setVisibility(View.VISIBLE);
-            }else {
-                holder.token.setVisibility(View.INVISIBLE);
+                holder.ujian_item.removeAllViews();
+
             }
 
         } catch (ParseException e) {
@@ -164,9 +167,11 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
         TextView judul, guru, mapel, kelas, jurusan, mulai, durasi, tv14;
         EditText et_token;
         Button token;
+        ConstraintLayout ujian_item;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            ujian_item = itemView.findViewById(R.id.item_ujian);
             judul = itemView.findViewById(R.id.tv_judul);
             guru = itemView.findViewById(R.id.tv_guru); mapel = itemView.findViewById(R.id.tv_mapel);
             kelas = itemView.findViewById(R.id.tv_kelas); jurusan = itemView.findViewById(R.id.tv_jurusan);
@@ -194,9 +199,9 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
         }
     }
 
-    public void activateButtonsToken(boolean activate) {
-        this.activate = activate;
-        notifyDataSetChanged();
-    }
+//    public void activateButtonsToken(boolean activate) {
+//        this.activate = activate;
+//        notifyDataSetChanged();
+//    }
 
 }

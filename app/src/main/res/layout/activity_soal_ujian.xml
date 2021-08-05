@@ -43,6 +43,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:text="Guru"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/divider3"
         app:layout_constraintTop_toBottomOf="@+id/divider3" />
@@ -51,22 +52,24 @@
         android:id="@+id/TVmapel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:text="Mata Pelajaran"
-        app:layout_constraintEnd_toEndOf="@+id/divider3"
-        app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toBottomOf="@+id/divider3" />
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/TVguru"
+        app:layout_constraintStart_toStartOf="@+id/TVguru"
+        app:layout_constraintTop_toBottomOf="@+id/TVguru" />
 
     <TextView
         android:id="@+id/TVkelas"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="4dp"
         android:text="Kelas"
-        app:layout_constraintEnd_toEndOf="@+id/TVguru"
-        app:layout_constraintStart_toStartOf="@+id/TVguru"
-        app:layout_constraintTop_toBottomOf="@+id/TVguru" />
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/divider3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/TVguru" />
 
     <TextView
         android:id="@+id/TVjurusan"
@@ -74,9 +77,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Jurusan"
-        app:layout_constraintEnd_toEndOf="@+id/TVmapel"
-        app:layout_constraintStart_toStartOf="@+id/TVmapel"
-        app:layout_constraintTop_toBottomOf="@+id/TVmapel" />
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/TVkelas"
+        app:layout_constraintStart_toStartOf="@+id/TVkelas"
+        app:layout_constraintTop_toBottomOf="@+id/TVkelas" />
 
     <View
         android:id="@+id/divider4"
@@ -87,8 +91,9 @@
         android:layout_marginEnd="8dp"
         android:background="#000"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVkelas" />
+        app:layout_constraintTop_toBottomOf="@+id/TVmapel" />
 
     <TextView
         android:id="@+id/TVdurasi"
@@ -107,10 +112,11 @@
         android:id="@+id/btnStopUjian"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="Hentikan"
-        app:layout_constraintEnd_toEndOf="@+id/TVkelas"
-        app:layout_constraintStart_toStartOf="@+id/TVkelas"
-        app:layout_constraintTop_toBottomOf="@+id/divider4" >
+        app:layout_constraintEnd_toEndOf="@+id/TVmapel"
+        app:layout_constraintStart_toStartOf="@+id/TVmapel"
+        app:layout_constraintTop_toBottomOf="@+id/divider4">
 
 
     </Button>

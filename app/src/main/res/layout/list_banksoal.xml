@@ -23,10 +23,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="16dp">
+                android:layout_margin="8dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -39,7 +36,8 @@
                         android:layout_marginTop="12dp"
                         android:text="mapel"
                         android:textColor="#000"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -81,7 +79,9 @@
                             android:id="@+id/rb_a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="RadioButton" />
+                            android:text="RadioButton"
+                            android:textColor="#000"
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:id="@+id/img_jwb_a"
@@ -94,7 +94,9 @@
                             android:id="@+id/rb_b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="RadioButton" />
+                            android:text="RadioButton"
+                            android:textColor="#000"
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:id="@+id/img_jwb_b"
@@ -107,7 +109,9 @@
                             android:id="@+id/rb_c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="RadioButton" />
+                            android:text="RadioButton"
+                            android:textColor="#000"
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:id="@+id/img_jwb_c"
@@ -120,7 +124,9 @@
                             android:id="@+id/rb_d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="RadioButton" />
+                            android:text="RadioButton"
+                            android:textColor="#000"
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:id="@+id/img_jwb_d"
@@ -133,7 +139,9 @@
                             android:id="@+id/rb_e"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="RadioButton" />
+                            android:text="RadioButton"
+                            android:textColor="#000"
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:id="@+id/img_jwb_e"
