@@ -38,7 +38,6 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
     ArrayList<String> datasiswa = new ArrayList<>();
     ArrayList<String> dataUjian = new ArrayList<>();
     ArrayList<Boolean> cekSudahUjian = new ArrayList<>();
-//    private boolean activate = true;
 
     public AdapterUjian(Ujian ujian, Context context) {
         this.ujian = ujian;
@@ -59,7 +58,6 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
     public void onBindViewHolder(@NonNull AdapterUjian.ViewHolder holder, int position) {
 
         String sguru, smapel, skelas, sjurusan, swaktumulai, sdurasi;
-
 
         sguru = ujian.getData()[position].getNama();
         smapel = ujian.getData()[position].getMapel();
@@ -84,11 +82,6 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
         dataUjian.add(id_ujian);
         cekSudahUjian.add(false);
 
-//        if (cekSudahUjian.get(position)) {
-//            holder.token.setVisibility(View.INVISIBLE);
-//            holder.ujian_item.removeAllViews();
-//        }
-
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         try {
@@ -98,26 +91,25 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
             int cekakhir = date2.compareTo(Calendar.getInstance().getTime());
 
             if (!cekSudahUjian.get(position)){
-//                holder.token.setVisibility(View.VISIBLE);
 
-                if (cekawal>0){
+                if (cekawal > 0){
                     holder.token.setVisibility(View.INVISIBLE);
-                }else if(cekakhir<0){
+                }
+                else if(cekakhir < 0){
                     holder.token.setVisibility(View.INVISIBLE);
-                } else {
+                }
+                else {
                     holder.token.setVisibility(View.VISIBLE);
                 }
-
-            }else  {
+            }
+            else {
                 holder.token.setVisibility(View.INVISIBLE);
                 holder.ujian_item.removeAllViews();
-
             }
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
 
 
         holder.token.setOnClickListener(view -> {
@@ -127,7 +119,6 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
 
             else {
                 if (holder.et_token.getText().toString().equals(token)) {
-
                     //token benar
                     holder.token.setVisibility(View.INVISIBLE);
 
@@ -156,12 +147,10 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
 
     }
 
-
     @Override
     public int getItemCount() {
         return ujian.getData().length;
     }
-
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView judul, guru, mapel, kelas, jurusan, mulai, durasi, tv14;
@@ -170,7 +159,6 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
         ConstraintLayout ujian_item;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             ujian_item = itemView.findViewById(R.id.item_ujian);
             judul = itemView.findViewById(R.id.tv_judul);
             guru = itemView.findViewById(R.id.tv_guru); mapel = itemView.findViewById(R.id.tv_mapel);
@@ -187,7 +175,6 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
         datasiswa.add(value);
     }
 
-
     public void cari(){
         for (int i = 0; i < dataUjian.size(); i++) {
             for (int j = 0; j < datasiswa.size() ; j++) {
@@ -198,10 +185,5 @@ public class AdapterUjian extends RecyclerView.Adapter<AdapterUjian.ViewHolder> 
             }
         }
     }
-
-//    public void activateButtonsToken(boolean activate) {
-//        this.activate = activate;
-//        notifyDataSetChanged();
-//    }
 
 }

@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.aplas.myapplication.Model.HasilUjian;
 import org.aplas.myapplication.R;
-import org.aplas.myapplication.ui.ui.hasil_ujian.DetailHasilUjianActivity;
 import org.jetbrains.annotations.NotNull;
 
 public class AdapterHasilUjian extends RecyclerView.Adapter<AdapterHasilUjian.ViewHolder>{

@@ -2,7 +2,6 @@ package org.aplas.myapplication.ui.ui.ujian;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +12,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.aplas.myapplication.Adapter.AdapterDetailHasilUjian;
 import org.aplas.myapplication.Adapter.AdapterUjian;
 import org.aplas.myapplication.Model.ApiInterface;
-import org.aplas.myapplication.Model.DetailHasilUjian;
-import org.aplas.myapplication.Model.HasilUjianSiswa;
+import org.aplas.myapplication.Model.HasilUjian;
 import org.aplas.myapplication.Model.Ujian;
 import org.aplas.myapplication.R;
 import org.aplas.myapplication.Rest.ApiClient;
-import org.aplas.myapplication.ui.ui.hasil_ujian.DetailHasilUjianActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -70,8 +66,8 @@ public class UjianFragment extends Fragment {
                 Ujian ujian = response.body();
                 if (response.isSuccessful()) {
                     adapter = new AdapterUjian(ujian, getContext());
-                    if (ujian != null) {
                     refreshbtnsiswa();
+                    if (ujian != null) {
                         for (int i = 0; i < ujian.getData().length; i++) {
                             recyclerView.setAdapter(adapter);
                         }
@@ -102,11 +98,11 @@ public class UjianFragment extends Fragment {
         sharedPreferences = getActivity().getSharedPreferences(SHARE, MODE_PRIVATE);
         String siswa = sharedPreferences.getString("KEY_ID", "");
 
-        Call<HasilUjianSiswa> call = apiInterface.getHasilUjianSiswa(siswa);
-        call.enqueue(new Callback<HasilUjianSiswa>() {
+        Call<HasilUjian> call = apiInterface.getHasilUjian(siswa);
+        call.enqueue(new Callback<HasilUjian>() {
             @Override
-            public void onResponse(Call<HasilUjianSiswa> call, Response<HasilUjianSiswa> response) {
-                HasilUjianSiswa hasilUjianSiswa = response.body();
+            public void onResponse(Call<HasilUjian> call, Response<HasilUjian> response) {
+                HasilUjian hasilUjianSiswa = response.body();
                 if (response.isSuccessful()) {
                     if (hasilUjianSiswa != null) {
                         for (int i = 0; i < hasilUjianSiswa.getData().length; i++) {
@@ -119,7 +115,7 @@ public class UjianFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<HasilUjianSiswa> call, Throwable t) {
+            public void onFailure(Call<HasilUjian> call, Throwable t) {
                 Toast.makeText(getActivity(), "" + t, Toast.LENGTH_LONG).show();
             }
         });
